@@ -1,0 +1,138 @@
+
+# Variables
+a = 15
+b = 4
+
+# Addition
+print("Addition:", a + b)  
+
+# Subtraction
+print("Subtraction:", a - b) 
+
+# Multiplication
+print("Multiplication:", a * b)  
+
+# Division
+print("Division:", a / b) 
+
+# Floor Division
+print("Floor Division:", a // b)  
+
+# Modulus
+print("Modulus:", a % b) 
+
+# Exponentiation
+print("Exponentiation:", a ** b)
+#-------------------------------------------------------------------------------------------------
+a = 4
+b = 5
+# Equal
+print ("a == b : ", a == b)
+# Not Equal
+print ("a != b : ", a != b)
+# Greater Than
+print ("a > b : ", a > b)
+# Less Than
+print ("a < b : ", a < b)
+# Greater Than or Equal to
+print ("a >= b : ", a >= b)
+# Less Than or Equal to
+print ("a <= b : ", a <= b)
+#------------------------------------------------------------------------------------------------
+
+# Assignment Operator
+a = 10
+# Addition Assignment
+a += 5
+print ("a += 5 : ", a)
+# Subtraction Assignment
+a -= 5
+print ("a -= 5 : ", a)
+# Multiplication Assignment
+a *= 5
+print ("a *= 5 : ", a)
+# Division Assignment
+a /= 5
+print ("a /= 5 : ",a)
+# Remainder Assignment
+a %= 3
+print ("a %= 3 : ", a)
+# Exponent Assignment
+a **= 2
+print ("a **= 2 : ", a)
+# Floor Division Assignment
+a //= 3
+print ("a //= 3 : ", a)
+
+
+*** out put
+
+a += 5 : 105
+a -= 5 : 100
+a *= 5 : 500
+a /= 5 : 100.0
+a %= 3 : 1.0
+a **= 2 : 1.0
+a //= 3 : 0.0
+
+***
+#=============================================================================================
+#Identity operator:
+
+x = ["apple", "banana"]
+y = ["apple", "banana"]
+z = x
+
+print(x is z)
+
+# returns True because z is the same object as x
+
+print(x is y)
+
+# returns False because x is not the same object as y, even if they have the same content
+
+print(x is not y)
+
+# retunr True because x is not the same object as y ,even if they have same content
+
+print(x == y)
+
+# to demonstrate the difference betweeen "is" and "==": this comparison returns True because x is equal to y
+
+#================================================================================================================
+
+x = 5
+y = 10
+if x > 3 and y < 15:
+  print("Both x and y are within the specified range")
+#=================================================================================================================
+x = 10
+y = 5
+if x is y:
+    print("x and y are the same object")
+else:
+    print("x and y are not the same object")
+#=================================================================================================================
+print(6 & 3)
+
+
+
+"""
+The & operator compares each bit and set it to 1 if both are 1, otherwise it is set to 0:
+
+6 = 0000000000000110
+3 = 0000000000000011
+--------------------
+2 = 0000000000000010
+====================
+
+Decimal numbers and their binary values:
+0 = 0000000000000000
+1 = 0000000000000001
+2 = 0000000000000010
+3 = 0000000000000011
+4 = 0000000000000100
+5 = 0000000000000101
+6 = 0000000000000110
+7 = 0000000000000111
+"""
