@@ -1,0 +1,85 @@
+#Counting the Frequencies in a List Using Dictionary in Python
+from collections import Counter
+
+a = ['apple', 'banana', 'apple', 'orange', 'banana', 'banana']
+
+# Use Counter to count the frequencies
+b = Counter(a)
+print(b)
+***
+Output
+Counter({'banana': 3, 'apple': 2, 'orange': 1})
+***
+#====================================================================
+
+a = ['apple', 'banana', 'apple', 'orange', 'banana', 'banana']
+
+# Create an empty dictionary to store the counts
+b = {}
+
+# Loop through the list
+for c in a:
+    # Use get() to either return the current count or 0 
+    #if the item is not in the dictionary
+    b[c] = b.get(c, 0) + 1
+print(b)
+***
+Output
+{'apple': 2, 'banana': 3, 'orange': 1}
+***
+#===================================================================
+
+from collections import defaultdict
+
+# List of items
+a = ['apple', 'banana', 'apple', 'orange', 'banana', 'banana']
+
+# Create a defaultdict with default value 0
+b = defaultdict(int)
+
+# Loop through the list
+for c in a:
+    b[c] += 1
+
+# Print the frequency of each item
+print(dict(b))
+***
+Output
+{'apple': 2, 'banana': 3, 'orange': 1}
+***
+#===============================================================
+a = ['apple', 'banana', 'apple', 'orange', 'banana', 'banana']
+
+# Create an empty dictionary to store the counts
+b = {}
+
+# Loop through the list
+for c in a:
+    # If the item is already in dictionary, increase its count
+    if c in b:
+        b[c] += 1
+    # If the item is not in dictionary, add it with a count of 1
+    else:
+        b[c] = 1
+print(b)
+***
+
+Output
+{'apple': 2, 'banana': 3, 'orange': 1}
+
+***
+#====================================================================
+a = ['apple', 'banana', 'apple', 'orange', 'banana', 'banana']
+
+# Create a list of unique items
+b = list(set(a))
+
+# Use list comprehension to count the frequency of each unique item
+c = {item: a.count(item) for item in b}
+
+# Print the frequency of each item
+print(c)
+***
+Output
+{'banana': 3, 'apple': 2, 'orange': 1}
+***
