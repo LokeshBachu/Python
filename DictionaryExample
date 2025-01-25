@@ -83,3 +83,75 @@ print(c)
 Output
 {'banana': 3, 'apple': 2, 'orange': 1}
 ***
+#======================================================================
+
+#Python program to find the sum of all items in a dictionary
+# Python3 Program to find sum of
+# all items in a Dictionary
+ 
+# Function to print sum
+ 
+ 
+def returnSum(myDict):
+ 
+    list = []
+    for i in myDict:
+        list.append(myDict[i])
+    final = sum(list)
+ 
+    return final
+ 
+ 
+# Driver Function
+dict = {'a': 100, 'b': 200, 'c': 300}
+print("Sum :", returnSum(dict))
+***
+Output:
+
+Sum : 600
+Time Complexity: O(n)
+Auxiliary Space: O(n)
+***
+ #+++++++++++++++++++++++++++++++++++++===================
+#Python3 Program to find sum of
+# all items in a Dictionary
+ 
+# Function to print sum
+ 
+ 
+def returnSum(dict):
+ 
+    sum = 0
+    for i in dict.values():
+        sum = sum + i
+ 
+    return sum
+ 
+ 
+# Driver Function
+dict = {'a': 100, 'b': 200, 'c': 300}
+print("Sum :", returnSum(dict))
+
+***
+Output:
+
+Sum : 600
+***
+#==========================================================================
+#Using the lambda function
+
+#The lambda function is used to calculate the summation of all the values in the dictionary 
+
+import functools
+
+dic = {'a': 100, 'b': 200, 'c': 300}
+ 
+sum_dic = functools.reduce(lambda ac,k: ac+dic[k], dic, 0)
+ 
+print("Sum :", sum_dic)
+***
+Output:
+Sum : 600
+***
+
+
