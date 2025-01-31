@@ -1,0 +1,135 @@
+# Two lists of items
+list1 = ['apple', 'banana', 'cherry']
+list2 = ['red', 'yellow', 'green']
+# Nested loop to generate all possible pairs
+for fruit in list1:
+    for color in list2:
+        print(f"{fruit} - {color}")
+
+Output:
+apple - red
+apple - yellow
+apple - green
+banana - red
+banana - yellow
+banana - green
+cherry - red
+cherry - yellow
+cherry - green
+
+=====================================================
+# 2D grid representing a matrix
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+# Sum of all elements in the matrix
+total_sum = 0
+
+# Outer loop for each row
+for row in matrix:
+    # Inner loop for each element in the row
+    for element in row:
+        total_sum += element
+
+print(f"Total sum of elements: {total_sum}")
+
+========================================================
+# Outer loop countdown from 3 to 1
+outer_counter = 3
+
+while outer_counter > 0:
+    print(f"Outer loop: {outer_counter}")
+    
+    # Inner loop countdown from 2 to 1
+    inner_counter = 2
+    while inner_counter > 0:
+        print(f"  Inner loop: {inner_counter}")
+        inner_counter -= 1
+    
+    outer_counter -= 1
+    print()  # Add a blank line for better readability
+
+print("Countdown finished!")
+===========================================================
+# Outer loop countdown from 3 to 1
+outer_counter = 3
+
+while outer_counter > 0:
+    print(f"Outer loop: {outer_counter}")
+    
+    # Inner loop countdown from 2 to 1
+    inner_counter = 2
+    while inner_counter > 0:
+        print(f"  Inner loop: {inner_counter}")
+        inner_counter -= 1
+    
+    outer_counter -= 1
+    print()  # Add a blank line for better readability
+
+print("Countdown finished!")
+
+Output:
+Outer loop: 3
+  Inner loop: 2
+  Inner loop: 1
+
+Outer loop: 2
+  Inner loop: 2
+  Inner loop: 1
+
+Outer loop: 1
+  Inner loop: 2
+  Inner loop: 1
+Countdown finished!
+==============================================================================
+first = [2, 4, 6]
+second = [2, 4, 6]
+for i in first:
+    for j in second:
+        if i == j:
+            continue
+        print(i, '*', j, '= ', i * j)
+
+Output
+2 * 4 =  8
+2 * 6 =  12
+4 * 2 =  8
+4 * 6 =  24
+6 * 2 =  12
+6 * 4 =  24
+==================================================================================
+# Original list of numbers
+numbers = [1, 2, 3, 4, 5]
+
+# List comprehension to create a list of squares
+squares = [number ** 2 for number in numbers]
+print(squares)
+==================================================================================
+# Size of the multiplication table
+n = 5
+
+# Create a multiplication table using nested list comprehension
+multiplication_table = [[i * j for j in range(1, n + 1)] for i in range(1, n + 1)]
+
+# Print the multiplication table
+for row in multiplication_table:
+    print(row)
+
+Output:
+[1, 2, 3, 4, 5]
+[2, 4, 6, 8, 10]
+[3, 6, 9, 12, 15]
+[4, 8, 12, 16, 20]
+[5, 10, 15, 20, 25]
+==========================================================================================
+# outer loop
+for i in range(1, 11):
+    # nested loop
+    # to iterate from 1 to 10
+    for j in range(1, 11):
+        # print multiplication
+        print(i * j, end=' ')
+    print()
