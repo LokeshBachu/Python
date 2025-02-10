@@ -1,0 +1,586 @@
+#1.abs() Example
+# Function to calculate speed
+def cal_speed(dist, time):
+    print(" Distance(km) :", dist)
+    print(" Time(hr) :", time)
+    return dist / time
+
+# Function to calculate distance traveled
+def cal_dis(speed, time):
+    print(" Time(hr) :", time)
+    print(" Speed(km / hr) :", speed)
+    return speed * time
+
+# Function to calculate time taken
+def cal_time(dist, speed):
+    print(" Distance(km) :", dist)
+    print(" Speed(km / hr) :", speed)
+    return dist / speed
+
+
+# Driver Code
+# Calling function cal_speed()
+print(" The calculated Speed(km / hr) is :",
+      cal_speed(abs(45.9), abs(-2)))
+print("")
+
+# Calling function cal_dis()
+print(" The calculated Distance(km) :",
+      cal_dis(abs(-62.9), abs(2.5)))
+print("")
+
+# Calling function cal_time()
+print(" The calculated Time(hr) :",
+      cal_time(abs(48.0), abs(4.5)))
+
+Output
+ Distance(km) : 45.9
+ Time(hr) : 2
+ The calculated Speed(km / hr) is : 22.95
+
+ Time(hr) : 2.5
+ Speed(km / hr) : 62.9
+ The calculated Distance(km) : 157.25
+
+ Distance(km) : 48.0
+ Speed(km / hr) : 4.5
+ The calculated Time(hr) : 10.666666666666666
+
+=================================================================================================================================================================================================
+#2.all() function
+# Non-Empty String
+s = "Hi There!"
+print(all(s))
+
+# Non-Empty String
+s = "000"
+print(all(s))
+
+# Empty string
+s = ""
+print(all(s))
+
+Output
+True
+True
+True
+# All elements of dictionary are true
+d = {1: "Hello", 2: "Hi"}
+print(all(d))
+
+# All elements of dictionary are false
+d = {0: "Hello", False: "Hi"}
+print(all(d))
+
+# Some elements of dictionary
+# are true while others are false
+d = {0: "Salut", 1: "Hello", 2: "Hi"}
+print(all(d))
+
+# Empty dictionary
+d = {}
+print(all(d))
+
+# all() with condition - to check if all letters of word 'time' are there
+l = {"t":1, "i":1, "m":2, "e":0}
+print(all(ele > 0 for ele in l.values()))
+
+Output
+True
+False
+False
+True
+False
+===============================================================================================================================
+#3.any() function
+# Non-Empty String
+s = "Hi There!"
+print(any(s))
+ 
+# Non-Empty String
+s = "000"
+print(any(s))
+ 
+# Empty string
+s = ""
+print(any(s))
+
+Output:
+
+True
+True
+False
+
+# All elements of set are True
+s = { 1, 1, 3}
+print(any(s))
+ 
+# All elements of set are False
+s = { 0, 0, False}
+print(any(s))
+ 
+# Some elements of set are True while others are False
+s = { 1, 2, 0, 8, False}
+print(any(s))
+ 
+# Empty set
+s = {}
+print(any(s))
+Output:
+
+True
+False
+True
+False
+============================================================================================================================================
+# 4 .Python ascii() on Tuple
+test_tuple = ("Ģ", "Õ", "Õ", "D")
+print("ascii on Python tuple:", ascii(test_tuple))
+Output
+ascii on Python tuple: ('\u0122', '\xd5', '\xd5', 'D')
+=================================================================================================================================================
+# 5. bin() function
+# Python code to demonstrate working of
+# bin()
+ 
+# declare variable
+num = 100
+ 
+# print binary number
+print(bin(num))
+Output
+
+0b1100100
+=========================================================================================================================================================
+# 6. bool() function in python
+# Python program to illustrate
+# built-in method bool()
+
+# Returns False as x is False
+x = False
+print(bool(x))
+
+# Returns True as x is True
+x = True
+print(bool(x))
+
+# Returns False as x is not equal to y
+x = 5
+y = 10
+print(bool(x == y))
+
+# Returns False as x is None
+x = None
+print(bool(x))
+
+# Returns False as x is an empty sequence
+x = ()
+print(bool(x))
+
+# Returns False as x is an empty mapping
+x = {}
+print(bool(x))
+
+# Returns False as x is 0
+x = 0.0
+print(bool(x))
+
+# Returns True as x is a non empty string
+x = 'MachineLearning'
+print(bool(x))
+
+Output: 
+
+False
+True
+False
+False
+False
+False
+False
+True
+=============================================================================================================================================
+# 7.chr() 
+# Python program to illustrate 
+# chr() builtin function 
+
+numbers = [17, 38, 79] 
+
+for number in numbers: 
+	
+	# Convert ASCII-based number to character. 
+	letter = chr(number) 
+	print("Character of ASCII value", number, "is ", letter) 
+
+Output
+Character of ASCII value 17 is  
+Character of ASCII value 38 is  &
+Character of ASCII value 79 is  O
+=============================================================================================================================================
+#8. enumarte() in python
+a = ["Python", "for", "ML"]
+
+# Iterating list using enumerate to get both index and element
+for i, name in enumerate(a):
+    print(f"Index {i}: {name}")
+
+# Converting to a list of tuples
+print(list(enumerate(a)))
+
+==========================================================================================================================================
+#9.eval()
+print(eval('1+2'))
+print(eval("sum([1, 2, 3, 4])"))
+
+Output
+3
+10
+=============================================================================================================================================
+#10. filter() 
+def even(n):
+    return n % 2 == 0
+
+a = [1, 2, 3, 4, 5, 6]
+b = filter(even, a)
+
+# Convert filter object to a list
+print(list(b))  
+
+Output
+[2, 4, 6]
+
+a = [1, 2, 3, 4, 5, 6]
+b = filter(lambda x: x % 2 == 0, a)
+
+print(list(b))  
+
+Output
+[2, 4, 6]
+==================================================================================================================================================
+#11.float()
+# Python program to illustrate
+# Various examples and working of float()
+# for integers
+print(float(21.89))
+
+# for floating point numbers
+print(float(8))
+
+# for integer type strings
+print(float("23"))
+
+# for floating type strings
+print(float("-16.54"))
+
+# for string floats with whitespaces
+print(float("	 -24.45 \n"))
+
+# for inf/infinity
+print(float("InF"))
+print(float("InFiNiTy"))
+
+# for NaN
+print(float("nan"))
+print(float("NaN"))
+
+Output: 
+
+21.89
+8.0
+23.0
+-16.54
+-24.45
+inf
+inf
+nan
+nan
+============================================================================================================================================
+# 12 formatted()
+# which prints out i, i ^ 2, i ^ 3,
+#  i ^ 4 in the given range
+
+# Function prints out values
+# in an unorganized manner
+def unorganized(a, b):
+    for i in range(a, b):
+        print(i, i**2, i**3, i**4)
+
+# Function prints the organized set of values
+def organized(a, b):
+    for i in range(a, b):
+
+        # Using formatters to give 6
+        # spaces to each set of values
+        print("{:6d} {:6d} {:6d} {:6d}"
+              .format(i, i ** 2, i ** 3, i ** 4))
+
+# Driver Code
+n1 = int(input("Enter lower range :-\n"))
+n2 = int(input("Enter upper range :-\n"))
+
+print("------Before Using Formatters-------")
+
+# Calling function without formatters
+unorganized(n1, n2)
+
+print()
+print("-------After Using Formatters---------")
+print()
+
+# Calling function that contains
+# formatters to organize the data
+organized(n1, n2)
+
+Output : 
+
+Enter lower range :-
+3
+Enter upper range :-
+10
+------Before Using Formatters-------
+3 9 27 81
+4 16 64 256
+5 25 125 625
+6 36 216 1296
+7 49 343 2401
+8 64 512 4096
+9 81 729 6561
+-------After Using Formatters---------
+     3      9     27     81
+     4     16     64    256
+     5     25    125    625
+     6     36    216   1296
+     7     49    343   2401
+     8     64    512   4096
+     9     81    729   6561
+================================================================================================================
+#13 strip() function to remove tailing and ending white spaces. 
+text = "   hello world   "
+print(text.strip())  # Removes spaces
+================================================================================================================
+#14.globals()
+print(globals())
+print("")
+
+p,q,r,s=10,100,1000,10000
+
+print(globals())
+
+Output
+
+{'__name__': '__main__', '__doc__': None, '__package__': None, '__loader__': 
+<class '_frozen_importlib.BuiltinImporter'>, '__spec__': None, '__annotations__': {},
+ '__builtins__': <module 'builtins' (built-in)>}
+{'__name__': '__main__', '__doc__': None, '__package__': None, '__loader__': 
+<class '_frozen_importlib.BuiltinImporter'>, '__spec__': None, '__annotations__': {},
+ '__builtins__': <module 'builtins' (built-in)>, 'p': 10, 'q': 100, 'r': 1000,'s':10000}
+=========================================================================================================================
+#15 hash()
+# initializing objects
+int_val = 4
+str_val = 'ML'
+flt_val = 24.56
+
+# Printing the hash values.
+# Notice Integer value doesn't change
+# You'll have answer later in article.
+print("The integer hash value is : " + str(hash(int_val)))
+print("The string hash value is : " + str(hash(str_val)))
+print("The float hash value is : " + str(hash(flt_val)))
+
+Output
+The integer hash value is : 4
+The string hash value is : 4349415
+The float hash value is : 1291272085159665688
+print(text.strip(' hld'))  # Removes 'h', 'l', 'd' and spaces at both ends
+==============================================================================================================================
+#16 Hex()
+# TypeConversion from decimal with base 10
+# to hexadecimal form with base 16
+
+# Taking input from user
+# an integer with base 10
+number = int(input("Enter a number with base 10\n"))
+
+# The choices present to the user
+print("a. Decimal to Hexadecimal ")
+print("b. Decimal to Octal")
+print("c. Decimal to Binary")
+
+# taking user input
+print("Enter your choice :- ")
+choice = input()
+
+# Running a variable choice
+# Hexadecimal form if choice
+# is set to 'a'
+if choice is 'a':
+
+	# lstrip helps remove "0x" from the left
+	# rstrip helps remove "L" from the right,
+	# L represents a long number
+	print("Hexadecimal form of " + str(number) +
+		" is " + hex(number).lstrip("0x").rstrip("L"))
+
+if choice is 'b':
+
+	# Octal representation is done
+	# by adding a prefix "0o"
+	print("Octal form of " + str(number) +
+		" is " + oct(number).lstrip("0o").rstrip("L"))
+
+if choice is 'c':
+
+	# Binary representation is done by
+	# the addition of prefix "0b"
+	print("Binary form of " + str(number) +
+		" is "+bin(number).lstrip("0b").rstrip("L"))
+
+Output
+
+input variant a)
+
+Enter a number with base 10
+123
+a. Decimal to Hexadecimal 
+b. Decimal to Octal
+c. Decimal to Binary
+Enter your choice:- 
+a
+Hexadecimal form of 123 is 7b
+input variant b)
+
+Enter a number with base 10
+123456789
+a. Decimal to Hexadecimal 
+b. Decimal to Octal
+c. Decimal to Binary
+Enter your choice:- 
+a
+Hexadecimal form of 123456789 is 75bcd15
+==========================================================================================================================
+#17. id()
+x = 42
+y = x
+z = 42
+ 
+print(id(x))  
+print(id(y))  # (same as x)
+print(id(z))  # (same as x and y)
+Output
+140642115230496
+140642115230496
+140642115230496
+==============================================================================================================================
+# 18 .pow()
+# positive x, positive y (x**y)
+print("Positive x and positive y : ", end="")
+print(pow(4, 3))
+
+print("Negative x and positive y : ", end="")
+# negative x, positive y (-x**y)
+print(pow(-4, 3))
+
+print("Positive x and negative y : ", end="")
+# positive x, negative y (x**-y)
+print(pow(4, -3))
+
+print("Negative x and negative y : ", end="")
+# negative x, negative y (-x**-y)
+print(pow(-4, -3))
+
+Output:
+
+Positive x and positive y : 64
+Negative x and positive y : -64
+Positive x and negative y : 0.015625
+Negative x and negative y : -0.015625
+================================================================================================================================
+#19.range()
+fruits = ["apple", "banana", "cherry", "date"]
+
+for i in range(len(fruits)):
+    print(fruits[i])
+Output :
+
+apple
+banana
+cherry
+date
+==================================================================================================================================
+#20.reverse()
+# creating a list
+cars = ["nano", "swift", "bolero", "BMW"]
+# reversing the list
+reversed_cars = list(reversed(cars))
+#printing the list
+print(reversed_cars)
+
+Output
+['BMW', 'bolero', 'swift', 'nano']
+
+====================================================================================================================================
+#21.zip() 
+a = [1, 2, 3]
+b = ['a', 'b', 'c']
+
+# No iterable are passed
+res = zip()
+
+# Converting iterator to list
+print(list(res))
+
+# One iterable is passed
+res = zip(a)
+
+# Converting iterator to list
+print(list(res))
+
+# Two iterables are passed
+res = zip(a, b)
+
+# Converting iterator to list
+print(list(res))
+
+Output
+[]
+[(1,), (2,), (3,)]
+[(1, 'a'), (2, 'b'), (3, 'c')]
+================================================================================================================================================
+#22.slice()
+slice_numbers = [1, 2, 3, 4, 5]
+print("slice_number before slicing and modfication : ",end=' ')
+print(slice_numbers) 
+slice_numbers[1:4] = [10, 20, 30]
+print("slice_number after slicing and modfication : ",end=' ')
+print(slice_numbers) 
+Output:
+
+slice_number before slicing and modfication :  [1, 2, 3, 4, 5]
+slice_number after slicing and modfication :  [1, 10, 20, 30, 5]
+==============================================================================================================================================================
+#23.str()
+b = {'name': 'Alice', 'age': 25}
+s = str(b)
+print(s)
+
+Output
+{'name': 'Alice', 'age': 25}
+============================================================================================================================================================
+#24 . type()
+print(type([]) is list)
+
+print(type([]) is not list)
+
+print(type(()) is tuple)
+
+print(type({}) is dict)
+
+print(type({}) is not list)
+
+Output
+True
+False
+True
+True
+True
