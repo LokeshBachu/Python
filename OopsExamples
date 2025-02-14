@@ -1,0 +1,571 @@
+#Example of class
+
+class Person:
+    """A simple class representing a person."""
+   
+    def __init__(self, name, age):
+        """Constructor to initialize the person's name and age."""
+        self.name = name
+        self.age = age
+   
+    def greet(self):
+        """Method to greet the person."""
+        return f"Hello, my name is {self.name} and I am {self.age} years old."
+
+    def have_birthday(self):
+        """Method to increment the person's age by one."""
+        self.age += 1
+        return f"Happy Birthday! I am now {self.age} years old."
+
+# Creating an instance of the Person class
+person1 = Person(name="Raman", age=30)
+
+# Using methods of the class
+print(person1.greet())         # Output: Hello, my name is Alice and I am 30 years old.
+print(person1.have_birthday()) # Output: Happy Birthday! I am now 31 years old.
+
+Output:
+Hello, my name is Raman and I am 30 years old.
+Happy Birthday! I am now 31 years old.
+
+=====================================================================================================================
+Instance attribute:
+
+class Dog:
+    #class attribute
+    species = "Animal"
+    def __init__(self, breed, name, age):
+        self.breed = breed
+        self.name = name
+        self.age = age
+d = Dog("Lebra", "Tuffy", 5)
+print(d.name)
+print(d.breed)
+print(d.age)
+
+OutPut:
+Tuffy
+Lebra
+5
+
+=======================================================================================================================
+
+#Inheritence Example
+# Base class (or Parent class)
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        return f"{self.name} makes a sound."
+
+# Derived class (or Child class) inheriting from Animal
+class Dog(Animal):
+    def __init__(self, name, breed):
+        # Call the constructor of the parent class
+        super().__init__(name)
+        self.breed = breed
+
+    def speak(self):
+        return f"{self.name} says Woof!"
+
+# Derived class (or Child class) inheriting from Animal
+class Cat(Animal):
+    def __init__(self, name, color):
+        # Call the constructor of the parent class
+        super().__init__(name)
+        self.color = color
+
+    def speak(self):
+        return f"{self.name} says Meow!"
+
+# Creating instances of the derived classes
+dog = Dog("Buddy", "Golden Retriever")
+cat = Cat("Whiskers", "Tabby")
+
+# Accessing the speak method from each instance
+print(dog.speak())  # Output: Buddy says Woof!
+print(cat.speak())  # Output: Whiskers says Meow!
+
+Output:
+Buddy says Woof!
+Whiskers says Meow!
+===============================================================================================
+
+Polymorphism:
+# Base class
+class Animal:
+    def speak(self):
+        pass
+# Derived class 1
+class Dog(Animal):
+    def speak(self):
+        return "Woof!"
+# Derived class 2
+class Cat(Animal):
+    def speak(self):
+        return "Meow!"
+# Derived class 3
+class Cow(Animal):
+    def speak(self):
+        return "Moo!"
+# Function demonstrating polymorphism
+def animal_speak(animal):
+    return animal.speak()
+# Creating instances of the derived classes
+dog = Dog()
+cat = Cat()
+cow = Cow()
+# Using the polymorphic method
+print(animal_speak(dog))  # Output: Woof!
+print(animal_speak(cat))  # Output: Meow!
+print(animal_speak(cow))  # Output: Moo!
+
+output:
+Woof!
+Meow!
+Moo!
+
+===============================================================================================
+#poymorphisum with inheritence
+# Base class
+class Bird:
+    def fly(self):
+        return "Birds can generally fly."
+
+# Derived class 1
+class Sparrow(Bird):
+    def fly(self):
+        return "Sparrows fly in the sky."
+
+# Derived class 2
+class Penguin(Bird):
+    def fly(self):
+        return "Penguins cannot fly, but they can swim."
+
+# Derived class 3
+class Ostrich(Bird):
+    def fly(self):
+        return "Ostriches cannot fly but they can run very fast."
+
+# Function demonstrating polymorphism with method overriding
+def bird_fly(bird):
+    return bird.fly()
+
+# Creating instances of the derived classes
+sparrow = Sparrow()
+penguin = Penguin()
+ostrich = Ostrich()
+
+# Using the polymorphic method
+print(bird_fly(sparrow))  # Output: Sparrows fly in the sky.
+print(bird_fly(penguin))  # Output: Penguins cannot fly, but they can swim.
+print(bird_fly(ostrich))  # Output: Ostriches cannot fly but they can run very fast.
+
+output:
+
+# Base class
+class Bird:
+    def fly(self):
+        return "Birds can generally fly."
+
+# Derived class 1
+class Sparrow(Bird):
+    def fly(self):
+        return "Sparrows fly in the sky."
+
+# Derived class 2
+class Penguin(Bird):
+    def fly(self):
+        return "Penguins cannot fly, but they can swim."
+
+# Derived class 3
+class Ostrich(Bird):
+    def fly(self):
+        return "Ostriches cannot fly but they can run very fast."
+
+# Function demonstrating polymorphism with method overriding
+def bird_fly(bird):
+    return bird.fly()
+
+# Creating instances of the derived classes
+sparrow = Sparrow()
+penguin = Penguin()
+ostrich = Ostrich()
+
+# Using the polymorphic method
+print(bird_fly(sparrow))  # Output: Sparrows fly in the sky.
+print(bird_fly(penguin))  # Output: Penguins cannot fly, but they can swim.
+print(bird_fly(ostrich))  # Output: Ostriches cannot fly but they can run very fast.
+
+===========================================================================================================================
+#Encapsulation:
+class Person:
+    def __init__(self, name, age, salary):
+        self.name = name             # Public attribute
+        self._age = age              # Protected attribute (indicated by a single underscore)
+        self.__salary = salary       # Private attribute (indicated by double underscores)
+
+    # Public method to access the private attribute
+    def get_salary(self):
+        return self.__salary
+
+    # Public method to modify the private attribute
+    def set_salary(self, new_salary):
+        if new_salary > 0:
+            self.__salary = new_salary
+        else:
+            print("Salary must be positive!")
+
+    # Protected method (indicated by a single underscore)
+    def _display_age(self):
+        return f"Age: {self._age}"
+
+    # Private method (indicated by double underscores)
+    def __display_salary(self):
+        return f"Salary: {self.__salary}"
+
+    # Public method to demonstrate access to protected and private methods
+    def display(self):
+        age_info = self._display_age()
+        salary_info = self.__display_salary()
+        return f"Name: {self.name}, {age_info}, {salary_info}"
+
+# Creating an instance of the Person class
+person = Person("Mahesh", 30, 75000)
+
+# Accessing the public attribute
+print(person.name)  # Output: Mahesh
+
+# Accessing the protected attribute (not recommended, but possible)
+print(person._age)  # Output: 30
+
+# Trying to access the private attribute directly (will raise an AttributeError)
+# print(person.__salary)  # Uncommenting this line will cause an error
+
+# Accessing the private attribute through a public method
+print(person.get_salary())  # Output: 75000
+
+# Modifying the private attribute using a public method
+person.set_salary(80000)
+print(person.get_salary())  # Output: 80000
+
+# Accessing the protected method (not recommended, but possible)
+print(person._display_age())  # Output: Age: 30
+
+# Trying to access the private method directly (will raise an AttributeError)
+# print(person.__display_salary())  # Uncommenting this line will cause an error
+
+# Using a public method to access protected and private methods
+print(person.display())  # Output: Name: Mahesh, Age: 30, Salary: 80000
+
+output:
+Mahesh
+30
+75000
+80000
+Age: 30
+Name: Mahesh, Age: 30, Salary: 80000
+
+===============================================================================================================================
+Abstract class:
+
+from abc import ABC, abstractmethod
+# Abstract Base Class
+class Shape(ABC):
+    @abstractmethod
+    def area(self):
+        pass
+    @abstractmethod
+    def perimeter(self):
+        pass
+
+# Derived Class 1
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+    def area(self):
+        return self.width * self.height
+    def perimeter(self):
+        return 2 * (self.width + self.height)
+
+# Derived Class 2
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+    def area(self):
+        return 3.14159 * self.radius * self.radius
+    def perimeter(self):
+        return 2 * 3.14159 * self.radius
+
+# Creating instances of the derived classes
+rectangle = Rectangle(4, 5)
+circle = Circle(3)
+
+# Using the abstract methods implemented in derived classes
+print(f"Rectangle Area: {rectangle.area()}")          # Output: 20
+print(f"Rectangle Perimeter: {rectangle.perimeter()}")# Output: 18
+print(f"Circle Area: {circle.area()}")                # Output: 28.27431
+print(f"Circle Perimeter: {circle.perimeter()}")      # Output: 18.84954
+
+output:
+Rectangle Area: 20
+Rectangle Perimeter: 18
+Circle Area: 28.274309999999996
+Circle Perimeter: 18.849539999999998
+
+===========================================================================================================
+
+# Basic class:
+# Define a class
+class Dog:
+    def __init__(self, name, breed):
+        self.name = name   # Attribute
+        self.breed = breed # Attribute
+    def bark(self):        # Method
+        return "Woof!"
+
+# Create an object (instance) of the Dog class
+my_dog = Dog("Buddy", "Golden Retriever")
+
+# Access attributes and call a method
+print(my_dog.name)    # Output: Buddy
+print(my_dog.breed)   # Output: Golden Retriever
+print(my_dog.bark())  # Output: Woof!
+
+Output:
+Buddy
+Golden Retriever
+Woof!
+========================================================================================================================
+# __init__ 
+
+# Define a class
+class Car:
+    def __init__(self, brand, model):  # The __init__ method
+        self.brand = brand   # Attribute
+        self.model = model   # Attribute
+
+# Create an object (instance) of the Car class
+my_car = Car("Toyota", "Corolla")
+
+# Access attributes
+print(my_car.brand)  # Output: Toyota
+print(my_car.model)  # Output: Corolla
+
+output:
+Toyota
+Corolla
+
+===========================================================================================================================
+#The __str__() Function
+
+class Book:
+    def __init__(self, title, author, year):
+        self.title = title
+        self.author = author
+        self.year = year
+
+    def __str__(self):
+        return f"'{self.title}' by {self.author} ({self.year})"
+
+# Create an object of the Book class
+my_book = Book("1984", "George Orwell", 1949)
+
+# Use print to see the string representation of the object
+print(my_book)  # Output: '1984' by George Orwell (1949)
+
+# Directly calling str() on the object
+print(str(my_book))  # Output: '1984' by George Orwell (1949)
+
+Output:
+'1984' by George Orwell (1949)
+'1984' by George Orwell (1949)
+
+==================================================================================================================================
+
+#Defining instance variables using a constructor
+#Example 
+class Person:
+    def __init__(self, name, age):
+        self.name = name  # Instance variable
+        self.age = age    # Instance variable
+
+# Create an object of the Person class
+person1 = Person("Alice", 30)
+
+# Access instance variables
+print(person1.name)  # Output: Alice
+print(person1.age)   # Output: 30
+
+#Output:
+Alice
+30
+
+====================================================================================================================================
+##Defining instance variables using the general method
+Example 
+class Person:
+    def set_details(self, name, age):
+        self.name = name  # Instance variable
+        self.age = age    # Instance variable
+
+# Create an object of the Person class
+person2 = Person()
+
+# Set instance variables using a general method
+person2.set_details("Bob", 25)
+
+# Access instance variables
+print(person2.name)  # Output: Bob
+print(person2.age)   # Output: 25
+
+#Output:
+Bob
+25
+=========================================================================================================================================
+
+#Single inherutence:
+Example 
+# Base class
+class Animal:
+    def speak(self):
+        return "Animal makes a sound"
+
+# Derived class
+class Dog(Animal):
+    def speak(self):
+        return "Woof!"
+
+# Create an instance of the derived class
+my_dog = Dog()
+
+# Call the method from the derived class
+print(my_dog.speak())  # Output: Woof!
+
+Output:
+Woof!
+==========================================================================================================================================
+#Multiple inheritence Example:
+# Base class 1
+class Person:
+    def __init__(self, name):
+        self.name = name
+    def greet(self):
+        return f"Hello, my name is {self.name}."
+# Base class 2
+class Employee:
+    def __init__(self, employee_id):
+        self.employee_id = employee_id
+    def get_id(self):
+        return f"My employee ID is {self.employee_id}."
+# Derived class inheriting from both Person and Employee
+class Manager(Person, Employee):
+    def __init__(self, name, employee_id, department):
+        Person.__init__(self, name)  # Initialize Person part
+        Employee.__init__(self, employee_id)  # Initialize Employee part
+        self.department = department
+    def show_details(self):
+        return f"{self.greet()} {self.get_id()} I manage the {self.department} department."
+
+# Create an instance of the derived class
+manager = Manager("Alice", "E12345", "Sales")
+
+# Call methods from base classes and derived class
+print(manager.greet())         # Output: Hello, my name is Alice.
+print(manager.get_id())        # Output: My employee ID is E12345.
+print(manager.show_details())  # Output: Hello, my name is Alice. My employee ID is E12345. I manage the Sales department.
+
+Output:
+Hello, my name is Alice.
+My employee ID is E12345.
+Hello, my name is Alice. My employee ID is E12345. I manage the Sales department.
+====================================================================================================================================================
+#Multilevel inheritence
+# Base class
+class Animal:
+    def __init__(self, species):
+        self.species = species
+    def eat(self):
+        return f"{self.species} is eating."
+
+# Derived class from Animal
+class Mammal(Animal):
+    def __init__(self, species, fur_color):
+        super().__init__(species)  # Initialize the base class (Animal)
+        self.fur_color = fur_color
+    def breathe(self):
+        return f"{self.species} breathes air."
+
+# Further derived class from Mammal
+class Dog(Mammal):
+    def __init__(self, species, fur_color, name):
+        super().__init__(species, fur_color)  # Initialize the base class (Mammal)
+        self.name = name
+    def bark(self):
+        return f"{self.name} says Woof!"
+
+# Create an instance of the Dog class
+my_dog = Dog("Dog", "Brown", "Buddy")
+
+# Call methods from all levels of the inheritance chain
+print(my_dog.eat())        # Output: Dog is eating.
+print(my_dog.breathe())    # Output: Dog breathes air.
+print(my_dog.bark())       # Output: Buddy says Woof!
+
+Output:
+Dog is eating.
+Dog breathes air.
+Buddy says Woof!
+==========================================================================================================
+
+#Hierarchical Inheritance in Python
+Example:
+# Base class
+class Animal:
+    def __init__(self, species):
+        self.species = species
+    def speak(self):
+        return f"{self.species} makes a sound."
+
+# Derived class 1
+class Dog(Animal):
+    def __init__(self, name):
+        super().__init__("Dog")  # Initialize the base class with species
+        self.name = name
+    def bark(self):
+        return f"{self.name} says Woof!"
+
+# Derived class 2
+class Cat(Animal):
+    def __init__(self, name):
+        super().__init__("Cat")  # Initialize the base class with species
+        self.name = name
+    def meow(self):
+        return f"{self.name} says Meow!"
+# Creating instances of the derived classes
+dog = Dog("Buddy")
+cat = Cat("Whiskers")
+# Calling methods from base class and derived classes
+print(dog.speak())  # Output: Dog makes a sound.
+print(dog.bark())   # Output: Buddy says Woof!
+print(cat.speak())  # Output: Cat makes a sound.
+print(cat.meow())   # Output: Whiskers says Meow!
+
+Output:
+Dog makes a sound.
+Buddy says Woof!
+Cat makes a sound.
+Whiskers says Meow!
+
+=======================================================================================================================
+OOP Exercise 1: Create a Class with instance attributes
+OOP Exercise 2: Create a Vehicle class without any variables and methods
+OOP Exercise 3: Create a child class Bus that will inherit all of the variables and methods of the Vehicle class
+OOP Exercise 4: Class Inheritance
+OOP Exercise 5: Define a property that must have the same value for every class instance (object)
+OOP Exercise 6: Class Inheritance
+OOP Exercise 7: Check type of an object
+OOP Exercise 8: Determine if School_bus is also an instance of the Vehicle class
+
