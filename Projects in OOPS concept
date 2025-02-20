@@ -1,0 +1,220 @@
+***Library Management System
+A library management system can be designed using OOP to manage books, users, and transactions.
+
+Classes and Inheritance
+***
+
+class LibraryItem:
+    def __init__(self, title, id):
+        self.title = title
+        self.id = id
+    
+    def display_info(self):
+        return f"ID: {self.id}, Title: {self.title}"
+
+class Book(LibraryItem):
+    def __init__(self, title, id, author):
+        super().__init__(title, id)
+        self.author = author
+
+    def display_info(self):
+        return f"Book - {super().display_info()}, Author: {self.author}"
+
+class Magazine(LibraryItem):
+    def __init__(self, title, id, issue):
+        super().__init__(title, id)
+        self.issue = issue
+
+    def display_info(self):
+        return f"Magazine - {super().display_info()}, Issue: {self.issue}"
+
+# Usage
+book1 = Book("Harry Potter", 1, "J.K. Rowling")
+magazine1 = Magazine("National Geographic", 2, "Feb 2025")
+print(book1.display_info())  # Output: Book - ID: 1, Title: Harry Potter, Author: J.K. Rowling
+print(magazine1.display_info())  # Output: Magazine - ID: 2, Title: National Geographic, Issue: Feb 2025
+
+
+===========================================================================================================================
+
+***
+E-Commerce System (Shopping Cart)
+An e-commerce system uses OOP for handling products, orders, and customers. The shopping cart could be an example of polymorphism and encapsulation.
+
+Polymorphism and Encapsulation
+***
+class Product:
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
+    
+    def display(self):
+        return f"{self.name} - ${self.price}"
+
+class Electronics(Product):
+    def __init__(self, name, price, warranty_period):
+        super().__init__(name, price)
+        self.warranty_period = warranty_period
+    
+    def display(self):
+        return f"{self.name} - ${self.price} (Warranty: {self.warranty_period} years)"
+
+class Clothing(Product):
+    def __init__(self, name, price, size):
+        super().__init__(name, price)
+        self.size = size
+    
+    def display(self):
+        return f"{self.name} - ${self.price} (Size: {self.size})"
+
+class ShoppingCart:
+    def __init__(self):
+        self.items = []
+    
+    def add_product(self, product):
+        self.items.append(product)
+    
+    def total_price(self):
+        return sum(item.price for item in self.items)
+    
+    def display_cart(self):
+        for item in self.items:
+            print(item.display())
+
+# Usage
+cart = ShoppingCart()
+cart.add_product(Electronics("Smartphone", 799, 2))
+cart.add_product(Clothing("T-shirt", 25, "M"))
+
+cart.display_cart()
+# Output:
+# Smartphone - $799 (Warranty: 2 years)
+# T-shirt - $25 (Size: M)
+print(f"Total: ${cart.total_price()}")  # Output: Total: $824
+==================================================================================================================================================================
+***
+Banking System
+In a banking system, different types of accounts (savings, checking) can be modeled using inheritance. Encapsulation ensures that account details remain secure.
+
+Encapsulation and Abstraction
+***                   
+class BankAccount:
+    def __init__(self, owner, balance=0):
+        self.owner = owner
+        self.__balance = balance  # Private attribute
+    
+    def deposit(self, amount):
+        if amount > 0:
+            self.__balance += amount
+            print(f"Deposited ${amount}. New balance: ${self.__balance}")
+        else:
+            print("Deposit amount must be positive.")
+
+    def withdraw(self, amount):
+        if 0 < amount <= self.__balance:
+            self.__balance -= amount
+            print(f"Withdrew ${amount}. New balance: ${self.__balance}")
+        else:
+            print("Insufficient funds or invalid amount.")
+
+    def get_balance(self):
+        return self.__balance
+
+class SavingsAccount(BankAccount):
+    def __init__(self, owner, balance=0, interest_rate=0.02):
+        super().__init__(owner, balance)
+        self.interest_rate = interest_rate
+
+    def apply_interest(self):
+        interest = self.get_balance() * self.interest_rate
+        self.deposit(interest)
+        print(f"Interest applied: ${interest}")
+
+# Usage
+account = SavingsAccount("Alice", 1000)
+account.deposit(500)  # Deposited $500. New balance: $1500
+account.apply_interest()  # Interest applied: $30.0
+account.withdraw(200)  # Withdrew $200. New balance: $1300
+
+======================================================================================================================================
+***
+Hotel Reservation System
+A hotel reservation system can use OOP to manage rooms, bookings, and payments.
+
+Abstraction, Encapsulation, and Inheritance
+***
+from abc import ABC, abstractmethod
+
+class Room(ABC):
+    @abstractmethod
+    def get_price(self):
+        pass
+
+class SingleRoom(Room):
+    def get_price(self):
+        return 100  # Price per night for a single room
+
+class DoubleRoom(Room):
+    def get_price(self):
+        return 150  # Price per night for a double room
+
+class HotelBooking:
+    def __init__(self, room, nights):
+        self.room = room
+        self.nights = nights
+
+    def calculate_total(self):
+        return self.room.get_price() * self.nights
+
+# Usage
+single_room = SingleRoom()
+double_room = DoubleRoom()
+
+booking1 = HotelBooking(single_room, 3)  # 3 nights
+booking2 = HotelBooking(double_room, 5)  # 5 nights
+
+print(f"Total cost for booking 1: ${booking1.calculate_total()}")  # Output: Total cost for booking 1: $300
+print(f"Total cost for booking 2: ${booking2.calculate_total()}")  # Output: Total cost for booking 2: $750
+
+===============================================================================================================================
+***
+Employee Management System
+For managing employees in an organization, we can model employee types (e.g., managers, developers) using inheritance.
+
+Inheritance and Polymorphism
+
+***                   
+
+class Employee:
+    def __init__(self, name, position):
+        self.name = name
+        self.position = position
+    
+    def work(self):
+        return f"{self.name} is working."
+
+class Manager(Employee):
+    def __init__(self, name, position, team_size):
+        super().__init__(name, position)
+        self.team_size = team_size
+    
+    def work(self):
+        return f"{self.name} is managing a team of {self.team_size} people."
+
+class Developer(Employee):
+    def __init__(self, name, position, programming_languages):
+        super().__init__(name, position)
+        self.programming_languages = programming_languages
+    
+    def work(self):
+        return f"{self.name} is coding in {', '.join(self.programming_languages)}."
+
+# Usage
+manager = Manager("John", "Manager", 5)
+developer = Developer("Alice", "Developer", ["Python", "JavaScript"])
+
+print(manager.work())  # Output: John is managing a team of 5 people.
+print(developer.work())  # Output: Alice is coding in Python, JavaScript.
+
+===========================================================================================================================================================
+                   
