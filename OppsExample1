@@ -583,3 +583,70 @@ Output:
 78.5
 =======================================================================================================================================================================================
 
+# A list of numbers
+numbers = [1, 2, 3, 4, 5]
+
+# Create an iterator object
+iterator = iter(numbers)
+
+# Iterate through the iterator using a loop
+for number in iterator:
+    print(number)
+===========================================================================================================================================================================================
+# An iterable class (it defines __iter__() method)
+class IterableExample:
+    def __init__(self, data):
+        self.data = data
+        self.index = 0
+
+    def __iter__(self):
+        return self  # The iterable itself is also an iterator
+
+    def __next__(self):
+        if self.index < len(self.data):
+            value = self.data[self.index]
+            self.index += 1
+            return value
+        else:
+            raise StopIteration
+
+# Creating an iterable object
+iterable_obj = IterableExample([10, 20, 30])
+
+# Using the iterable object as an iterator
+for item in iterable_obj:
+    print(item)
+
+# Creating another iterable object
+another_iterable = [1, 2, 3]
+
+# Using iter() to create an iterator from the iterable
+iterator = iter(another_iterable)
+
+# Using the iterator
+print(next(iterator))  # Output: 1
+print(next(iterator))  # Output: 2
+print(next(iterator))  # Output: 3
+================================================================================================================================================
+# A built-in iterable (list)
+numbers = [1, 2, 3, 4, 5]
+
+# Convert the list into an iterator
+iterator = iter(numbers)
+
+# Iterate over the iterator
+print(next(iterator))  # Output: 1
+print(next(iterator))  # Output: 2
+print(next(iterator))  # Output: 3
+print(next(iterator))  # Output: 4
+print(next(iterator))  # Output: 5
+==========================================================================================================================================================
+#Python infinite loop
+import itertools
+# Create an infinite iterator using itertools.count
+infinite_counter = itertools.count(start=1, step=1)
+
+# Take a few elements from the infinite iterator
+for _ in range(5):
+    print(next(infinite_counter))
+================================================================================================================================================================
