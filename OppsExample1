@@ -650,3 +650,418 @@ infinite_counter = itertools.count(start=1, step=1)
 for _ in range(5):
     print(next(infinite_counter))
 ================================================================================================================================================================
+#Python Generator Example 
+def simple_generator():
+    yield 1
+    yield 2
+    yield 3
+
+# Create a generator object
+gen = simple_generator()
+
+# Iterate through the generator
+for value in gen:
+    print(value)
+
+Output:
+1
+2
+3
+==========================================================================================================================================================================
+def count_up_to(max):
+    count = 1
+    while count <= max:
+        yield count
+        count += 1
+
+# Create a generator object
+counter = count_up_to(3)
+
+# Use the generator with the next() method
+print(next(counter))  # Output: 1
+print(next(counter))  # Output: 2
+print(next(counter))  # Output: 3
+
+# Uncommenting the following line will raise StopIteration because the generator is exhausted
+# print(next(counter))  # Raises StopIteration
+
+# Alternatively, use the generator in a for loop
+for number in count_up_to(3):
+    print(number)
+
+Output:
+1
+2
+3
+1
+2
+3
+==========================================================================================================================================================================
+# Generator expression to produce squares of numbers from 1 to 5
+squares = (x**2 for x in range(1, 6))
+
+# Iterate through the generator expression
+for square in squares:
+    print(square)
+
+Output:
+1
+4
+9
+16
+25
+=========================================================================================================================================================================
+def simple_gen():
+    yield 10
+    yield 20
+    yield 30
+
+# Create a generator object
+gen = simple_gen()
+
+# Use the generator in a for loop
+for value in gen:
+    print(value)
+
+ Output:
+10
+20
+30
+============================================================================================================================================================================
+Non-Local Variables in Nested Functions
+Each variable has a scope, which refers to the part of the code where we can find and access a variable whenever required. We can access non-local variables only within their scope and not outside it. 
+
+Example
+def counter():
+    count = 0  # `count` is a non-local variable for `increment()`
+    def increment():
+        nonlocal count
+        count += 1
+        return count
+    return increment
+
+# Create a counter function instance
+my_counter = counter()
+
+# Use the counter function
+print(my_counter())  # Output: 1
+print(my_counter())  # Output: 2
+print(my_counter())  # Output: 3
+
+Output:
+1
+2
+3
+========================================================================================================================================================================================================
+Example 
+def create_greeting(template):
+    def greet(name):
+        return template.format(name=name)
+    return greet
+
+# Create specific greeting functions
+formal_greeting = create_greeting("Hello, {name}. How do you do?")
+casual_greeting = create_greeting("Hey {name}! What's up?")
+
+# Use the greeting functions
+print(formal_greeting("Raman"))  
+print(casual_greeting("Suman"))  
+
+Output:
+Hello, Raman. How do you do?
+Hey Suman! What's up?
+=======================================================================================================================================================================================================
+#@Property in python
+class Temperature:
+    def __init__(self, celsius):
+        self._celsius = celsius
+
+    @property
+    def celsius(self):
+        """Getter for the celsius property."""
+        return self._celsius
+
+    @celsius.setter
+    def celsius(self, value):
+        """Setter for the celsius property."""
+        if value < -273.15:
+            raise ValueError("Temperature cannot be below -273.15 Celsius")
+        self._celsius = value
+
+    @celsius.deleter
+    def celsius(self):
+        """Deleter for the celsius property."""
+        del self._celsius
+
+    @property
+    def fahrenheit(self):
+        """Getter for the fahrenheit property."""
+        return self._celsius * 9/5 + 32
+
+# Usage
+temp = Temperature(25)
+print(temp.celsius)         # Output: 25
+print(temp.fahrenheit)      # Output: 77.0
+
+temp.celsius = 30           # Set new temperature
+print(temp.fahrenheit)      # Output: 86.0
+
+del temp.celsius            # Delete the celsius attribute
+# print(temp.celsius)       # This would raise an AttributeError because the attribute has been deleted
+====================================================================================================================================================================
+Using property() Method 
+Example 
+class Temperature:
+    def __init__(self, celsius):
+        self._celsius = celsius
+
+    def get_celsius(self):
+        """Getter for the celsius property."""
+        return self._celsius
+
+    def set_celsius(self, value):
+        """Setter for the celsius property."""
+        if value < -273.15:
+            raise ValueError("Temperature cannot be below -273.15 Celsius")
+        self._celsius = value
+
+    def del_celsius(self):
+        """Deleter for the celsius property."""
+        del self._celsius
+
+    def get_fahrenheit(self):
+        """Getter for the fahrenheit property."""
+        return self._celsius * 9/5 + 32
+
+    # Define the property
+    celsius = property(get_celsius, set_celsius, del_celsius)
+    fahrenheit = property(get_fahrenheit)
+
+# Usage
+temp = Temperature(25)
+print(temp.celsius)         # Output: 25
+print(temp.fahrenheit)      # Output: 77.0
+
+temp.celsius = 30           # Set new temperature
+print(temp.fahrenheit)      # Output: 86.0
+
+del temp.celsius            # Delete the celsius attribute
+# print(temp.celsius)       # This would raise an AttributeError because the attribute has been deleted
+
+Output:
+25
+77.0
+86.0
+===========================================================================================================================================================================================
+class Square:
+    def __init__(self, side_length):
+        self._side_length = side_length
+
+    @property
+    def area(self):
+        """Calculate the area of the square."""
+        return self._side_length ** 2
+
+    @property
+    def side_length(self):
+        """Getter for side_length."""
+        return self._side_length
+
+    @side_length.setter
+    def side_length(self, value):
+        """Setter for side_length."""
+        if value <= 0:
+            raise ValueError("Side length must be positive.")
+        self._side_length = value
+
+# Usage
+sq = Square(4)
+print(sq.area)           # Output: 16
+print(sq.side_length)   # Output: 4
+
+sq.side_length = 5       # Set new side length
+print(sq.area)           # Output: 25
+
+Output:
+16
+4
+25
+=====================================================================================================================
+#Python Attribute vs Property
+class BankAccount:
+    # Class attribute
+    interest_rate = 0.03
+    def __init__(self, balance):
+        # Instance attribute
+        self.balance = balance
+    def apply_interest(self):
+        self.balance += self.balance * BankAccount.interest_rate
+
+# Create instances
+acc1 = BankAccount(1000)
+acc2 = BankAccount(2000)
+
+# Apply interest to both accounts
+acc1.apply_interest()
+acc2.apply_interest()
+print(acc1.balance)  # Output: 1030.0
+print(acc2.balance)  # Output: 2060.0
+
+Output:
+1030.0
+2060.0
+=====================================================================================================================
+Python property()
+It returns the object of the property class. The following example shows the use property() function. 
+
+Example 
+class Circle:
+    def __init__(self, radius):
+        self._radius = radius
+
+    def get_radius(self):
+        return self._radius
+
+    def set_radius(self, value):
+        if value <= 0:
+            raise ValueError("Radius must be positive.")
+        self._radius = value
+
+    def del_radius(self):
+        del self._radius
+
+    def get_area(self):
+        return 3.14 * self._radius ** 2
+
+    # Define properties using property()
+    radius = property(get_radius, set_radius, del_radius)
+    area = property(get_area)
+
+# Usage
+circle = Circle(5)
+print(circle.radius)  # Output: 5
+print(circle.area)    # Output: 78.5
+
+circle.radius = 10    # Set new radius
+print(circle.area)    # Output: 314.0
+
+Output:
+5
+78.5
+314.0
+=======================================================================================================================================================
+#@property-name.setter
+
+Example 
+class Temperature:
+    def __init__(self, celsius):
+        self._celsius = celsius
+
+    @property
+    def celsius(self):
+        """Getter for the celsius property."""
+        return self._celsius
+
+    @celsius.setter
+    def celsius(self, value):
+        """Setter for the celsius property."""
+        if value < -273.15:
+            raise ValueError("Temperature cannot be below -273.15 Celsius")
+        self._celsius = value
+
+# Usage
+temp = Temperature(25)
+print(temp.celsius)  # Output: 25
+
+temp.celsius = 30    # Set new temperature
+print(temp.celsius)  # Output: 30
+
+Output:
+25
+30
+==================================================================================================================================================================
+#@property-name.deleter
+Example  
+class Item:
+    def __init__(self, name):
+        self._name = name
+    @property
+    def name(self):
+        """Getter for the name property."""
+        return self._name
+
+    @name.deleter
+    def name(self):
+        """Deleter for the name property."""
+        del self._name
+
+# Usage
+item = Item("Widget")
+print(item.name)  # Output: Widget
+del item.name     # Delete the name property
+
+Output:
+Widget
+
+============================================================================================================================================================================
+#@property-name.deleter
+
+#Here is an example demonstrating how to use the deleter decorator method to delete the property of the class.
+
+Example  
+class Item:
+    def __init__(self, name):
+        self._name = name
+    @property
+    def name(self):
+        """Getter for the name property."""
+        return self._name
+
+    @name.deleter
+    def name(self):
+        """Deleter for the name property."""
+        del self._name
+
+# Usage
+item = Item("Widget")
+print(item.name)  # Output: Widget
+del item.name     # Delete the name property
+
+Output:
+Widget
+================================================================================================================================================================================================
+#Using Getters and Setters
+class Square:
+    def __init__(self, side_length):
+        self._side_length = side_length
+
+    @property
+    def side_length(self):
+        """Getter for side_length."""
+        return self._side_length
+
+    @side_length.setter
+    def side_length(self, value):
+        """Setter for side_length."""
+        if value <= 0:
+            raise ValueError("Side length must be positive.")
+        self._side_length = value
+
+    @property
+    def area(self):
+        """Compute the area of the square."""
+        return self._side_length ** 2
+
+# Usage
+square = Square(4)
+print(square.side_length)
+print(square.area)      
+
+square.side_length = 5  
+print(square.area)      
+
+Output:
+4
+16
+25
+
