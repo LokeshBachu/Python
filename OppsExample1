@@ -1064,4 +1064,191 @@ Output:
 4
 16
 25
+======================================================================================================================================
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __add__(self, other):
+        return Point(self.x + other.x, self.y + other.y)
+
+    def __str__(self):
+        return f"({self.x}, {self.y})"
+
+p1 = Point(2, 3)
+p2 = Point(4, 5)
+p3 = p1 + p2
+
+print(p3)  # Output: (6, 8)
+
+Output:
+  # Output: (6, 8)
+========================================================================================================================================
+class ComplexNumber:
+    def __init__(self, real, imag):
+        self.real = real
+        self.imag = imag
+
+    # Overloading the binary + operator
+    def __add__(self, other):
+        real_part = self.real + other.real
+        imag_part = self.imag + other.imag
+        return ComplexNumber(real_part, imag_part)
+
+    def __str__(self):
+        return f"{self.real} + {self.imag}i"
+
+# Creating two complex number objects
+c1 = ComplexNumber(3, 2)
+c2 = ComplexNumber(1, 7)
+
+# Adding two complex numbers using the overloaded + operator
+c3 = c1 + c2
+
+print(c3)  # Output: 4 + 9i
+
+Output:
+4 + 9i
+==============================================================================================================================================
+class Vector:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __mul__(self, scalar):
+        return Vector(self.x * scalar, self.y * scalar)
+
+    def __rmul__(self, scalar):
+        return self.__mul__(scalar)
+
+    def __str__(self):
+        return f"Vector({self.x}, {self.y})"
+
+# Creating a Vector object
+v = Vector(2, 3)
+
+# Multiplying the vector by a scalar
+v2 = v * 4  # Using __mul__
+v3 = 3 * v  # Using __rmul__
+
+# Displaying the results
+print(v2)  # Output: Vector(8, 12)
+print(v3)  # Output: Vector(6, 9)
+
+Output:
+Vector(8, 12)
+Vector(6, 9)
+===================================================================================================================================================
+Example- String Representation
+class Book:
+    def __init__(self, title, author, price):
+        self.title = title
+        self.author = author
+        self.price = price
+
+    def __str__(self):
+        # Defines a readable string representation for the end-user
+        return f"'{self.title}' by {self.author}, priced at ₹{self.price}"
+
+    def __repr__(self):
+        # Defines a more detailed string representation for debugging
+        return f"Book(title='{self.title}', author='{self.author}', price={self.price})"
+
+# Creating an instance of the Book class
+book = Book("The Guide", "R.K. Narayan", 250)
+
+# Using the __str__ method
+print(str(book))  # Output: 'The Guide' by R.K. Narayan, priced at ₹250
+
+# Using the __repr__ method
+print(repr(book))  # Output: Book(title='The Guide', author='R.K. Narayan', price=250)
+
+Output:
+'The Guide' by R.K. Narayan, priced at ₹250
+Book(title='The Guide', author='R.K. Narayan', price=250)
+=============================================================================================================================================================
+class Rectangle:
+    def __init__(self, length, width):
+        self.length = length
+        self.width = width
+        self.area = length * width
+
+    def __lt__(self, other):
+        return self.area < other.area
+
+    def __le__(self, other):
+        return self.area <= other.area
+
+    def __gt__(self, other):
+        return self.area > other.area
+
+    def __ge__(self, other):
+        return self.area >= other.area
+
+    def __eq__(self, other):
+        return self.area == other.area
+
+    def __ne__(self, other):
+        return self.area != other.area
+
+    def __str__(self):
+        return f"Rectangle({self.length} x {self.width})"
+
+# Creating two rectangle objects
+rect1 = Rectangle(4, 5)
+rect2 = Rectangle(3, 7)
+
+# Comparing the rectangles using overloaded comparison operators
+print(rect1 > rect2)   # Output: False
+print(rect1 < rect2)   # Output: True
+print(rect1 >= rect2)  # Output: False
+print(rect1 <= rect2)  # Output: True
+print(rect1 == rect2)  # Output: False
+print(rect1 != rect2)  # Output: True
+
+Output:
+False
+True
+False
+True
+False
+True
+==========================================================================================================
+class Student:
+    def __init__(self, name, grade):
+        self.name = name
+        self.grade = grade
+
+    def __eq__(self, other):
+        """Override the equality operator (==)"""
+        if isinstance(other, Student):
+            return self.grade == other.grade
+        return False
+
+    def __lt__(self, other):
+        """Override the less-than operator (<)"""
+        if isinstance(other, Student):
+            return self.grade < other.grade
+        return False
+
+    def __repr__(self):
+        return f'Student(name={self.name}, grade={self.grade})'
+
+# Create Student objects
+student1 = Student("Alice", 90)
+student2 = Student("Bob", 85)
+student3 = Student("Charlie", 90)
+
+# Compare students
+print(student1 == student2)  # Output: False
+print(student1 == student3)  # Output: True
+print(student2 < student1)   # Output: True
+print(student1 < student3)   # Output: False
+
+Output:
+False
+True
+True
+False
 
