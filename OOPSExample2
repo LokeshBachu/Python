@@ -1,0 +1,244 @@
+Example: Treating a function as an object
+def square(x):
+    return x * x
+# Assigning the function to another variable
+operation = square
+result = operation(5)  # Treating the function as an object
+print(result)  # Output: 25
+
+Output:
+ 25
+===================================================================================
+Example: Assigning a function to a variable
+def greet(name):
+    return f"Hello, {name}!"
+
+# Assign the function to a variable
+greet_func = greet
+
+# Call the function using the variable
+print(greet_func("Raghav"))
+
+Output
+Hello, Raghav!
+===================================================================================================
+Example: Passing a function as an argument
+def shout(text):
+    return text.upper()
+
+def whisper(text):
+    return text.lower()
+
+def greet(func):
+    greeting = func("Hello, World!")
+    print(greeting)
+
+# Pass the 'shout' and 'whisper' functions as arguments
+greet(shout)   # Output: HELLO, WORLD!
+greet(whisper) # Output: hello, world!
+
+Output:
+HELLO, WORLD!
+
+hello, world!
+===============================================================================
+Example: Returning a function from another function
+def create_multiplier(x):
+    def multiplier(y):
+        return x * y
+    return multiplier
+
+# Create a multiplier function
+times_two = create_multiplier(2)
+times_three = create_multiplier(3)
+
+# Use the returned functions
+print(times_two(5))  # Output: 10
+print(times_three(5))  # Output: 15
+
+Output
+10
+15
+========================================================================================================
+Example: Passing a function to another function
+def shout(text):
+    return text.upper()
+
+def whisper(text):
+    return text.lower()
+
+def greet(func, name):
+    return func(f"Hello, {name}!")
+
+# Passing 'shout' and 'whisper' as arguments
+print(greet(shout, "Alice"))  # Output: HELLO, ALICE!
+print(greet(whisper, "Bob"))  # Output: hello, bob
+
+Output:
+HELLO, ALICE!
+hello, bob!
+=======================================================================================================================
+Example
+def outer_function(text):
+    def inner_function():
+        # Accessing the variable from the outer function's scope
+        print(text)
+   
+    # Returning the inner function
+    return inner_function
+
+# Calling outer_function and storing the returned inner_function
+my_function = outer_function("Hello, World!")
+
+# Calling the inner function
+my_function()  # Output: Hello, World!
+
+Output:
+Hello, World!
+===============================================================================================
+Higher-order Functions 
+These are the functions that take a function as an argument or return a function. 
+
+Example
+def add(x, y):
+    return x + y
+
+def subtract(x, y):
+    return x - y
+
+def apply_operation(x, y, operation):
+    return operation(x, y)
+
+# Using the higher-order function with different operations
+result1 = apply_operation(10, 5, add)
+result2 = apply_operation(10, 5, subtract)
+
+print(result1)  # Output: 15
+print(result2)  # Output: 5
+
+Output
+15
+5
+==================================================================================================
+#Syntactic decorator
+
+def my_decorator(func):
+    def wrapper():
+        print("Something before the function.")
+        func()
+        print("Something after the function.")
+    return wrapper
+
+@my_decorator
+def say_hello():
+    print("Hello!")
+
+say_hello()
+
+Output:
+Something before the function.
+Hello!
+Something after the function.
+========================================================================================================
+#Keeping the Original Name and Docstring of the Decorated Function
+import functools
+# Define a simple decorator
+def my_decorator(func):
+    @functools.wraps(func)  # This preserves the original function's name and docstring
+    def wrapper(*args, **kwargs):
+        print("Wrapper function called")
+        return func(*args, **kwargs)
+    return wrapper
+
+# A function with a name and docstring
+@my_decorator
+def greet(name):
+    """This function greets the person whose name is passed as an argument."""
+    print(f"Hello, {name}!")
+
+# Calling the function
+greet("Ravi")
+
+# Checking the name and docstring of the decorated function
+print(greet.__name__)      # Output: greet
+print(greet.__doc__)       # Output: This function greets the person whose name is passed as an argument.
+
+Output
+Wrapper function called
+Hello, Ravi!
+greet
+This function greets the person whose name is passed as an argument.
+==============================================================================================================
+#Reusing Decorator
+import functools
+
+# Define a reusable decorator that logs function calls
+def log_function_call(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        print(f"Function '{func.__name__}' is being called with arguments: {args} {kwargs}")
+        result = func(*args, **kwargs)
+        print(f"Function '{func.__name__}' returned: {result}")
+        return result
+    return wrapper
+
+# Applying the decorator to different functions
+
+@log_function_call
+def add(a, b):
+    """Returns the sum of two numbers."""
+    return a + b
+
+@log_function_call
+def multiply(a, b):
+    """Returns the product of two numbers."""
+    return a * b
+
+# Calling the functions
+add_result = add(5, 3)
+multiply_result = multiply(4, 7)
+
+Output:
+Function 'add' is being called with arguments: (5, 3) {}
+Function 'add' returned: 8
+Function 'multiply' is being called with arguments: (4, 7) {}
+Function 'multiply' returned: 28
+====================================================================================================================================
+Returning Values from Decorated Functions
+We can control the return type from a decorated function. Here is an example showing what happens to the returned value from decorated functions. 
+
+Example:
+import functools
+
+# Define a decorator that modifies the return value
+def double_return_value(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        result = func(*args, **kwargs)
+        return result * 2  # Modify the return value by doubling it
+    return wrapper
+
+# Applying the decorator to different functions
+
+@double_return_value
+def add(a, b):
+    """Returns the sum of two numbers."""
+    return a + b
+
+@double_return_value
+def get_message(name):
+    """Returns a greeting message."""
+    return f"Hello, {name}!"
+
+# Calling the functions
+sum_result = add(10, 5)
+message_result = get_message("Amit")
+
+# Outputs
+print(sum_result)       # Output: 30 (because 15 * 2)
+print(message_result)   # Output: Hello, Amit!Hello, Amit! (message repeated twice)
+
+Output:
+30
+Hello, Amit!Hello, Amit!
+=====================================================================================================================
