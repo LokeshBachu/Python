@@ -2245,48 +2245,8 @@ jessa.show()
 
 # call class method
 Student.change_School('XYZ School')
-Home » Python » Python Object-Oriented Programming (OOP) » Python Class Method vs. Static Method vs. Instance Method
-Python Class Method vs. Static Method vs. Instance Method
-Updated on: August 28, 2021 | 7 Comments
 
-In this tutorial, you’ll understand the difference between class method vs. static method vs. instance method step by step.
-
-In Object-oriented programming, when we design a class, we use the following three methods
-
-Instance method performs a set of actions on the data/value provided by the instance variables. If we use instance variables inside a method, such methods are called instance methods.
-Class method is method that is called on the class itself, not on a specific object instance. Therefore, it belongs to a class level, and all class instances share a class method.
-Static method is a general utility method that performs a task in isolation. This method doesn’t have access to the instance and class variable.
-Python class method vs static method vs instance method
-class method vs static method vs instance method
-Table of contents
-Difference #1: Primary Use
-Difference #2: Method Defination
-Difference #3: Method Call
-Difference #4: Attribute Access
-Difference #5: Class Bound and Instance Bound
-Difference #1: Primary Use
-Class method Used to access or modify the class state. It can modify the class state by changing the value of a class variable that would apply across all the class objects.
-The instance method acts on an object’s attributes. It can modify the object state by changing the value of instance variables.
-Static methods have limited use because they don’t have access to the attributes of an object (instance variables) and class attributes (class variables). However, they can be helpful in utility such as conversion form one type to another.
-Class methods are used as a factory method. Factory methods are those methods that return a class object for different use cases. For example, you need to do some pre-processing on the provided data before creating an object.
-
-Read our separate tutorial on
-
-Instance methods in Python
-Class method in Python
-Static method in Python
-Difference #2: Method Defination
-Let’s learn how to define instance method, class method, and static method in a class. All three methods are defined in different ways.
-
-All three methods are defined inside a class, and it is pretty similar to defining a regular function.
-Any method we create in a class will automatically be created as an instance method. We must explicitly tell Python that it is a class method or static method.
-Use the @classmethod decorator or the classmethod() function to define the class method
-Use the @staticmethod decorator or the staticmethod() function to define a static method.
-Example:
-
-Use self as the first parameter in the instance method when defining it. The self parameter refers to the current object.
-On the other hand, Use cls as the first parameter in the class method when defining it. The cls refers to the class.
-A static method doesn’t take instance or class as a parameter because they don’t have access to the instance variables and class variables.
+===========================================================================================================================================
 class Student:
     # class variables
     school_name = 'ABC School'
@@ -2309,7 +2269,7 @@ class Student:
     def find_notes(subject_name):
         return ['chapter 1', 'chapter 2', 'chapter 3']
 
-As you can see in the example, in the instance
+=======================================================================================================================
 
 Difference #3: Method Call
 Class methods and static methods can be called using ClassName or by using a class object.
@@ -2336,12 +2296,9 @@ Output:
 Jessa 12 ABC School
 School name changed to XYZ School
 School name changed to PQR School
+==================================================================================================================================================
 Difference #4: Attribute Access
-Both class and object have attributes. Class attributes include class variables, and object attributes include instance variables.
 
-The instance method can access both class level and object attributes. Therefore, It can modify the object state.
-Class methods can only access class level attributes. Therefore, It can modify the class state.
-A static method doesn’t have access to the class attribute and instance attributes. Therefore, it cannot modify the class or object state.
 Example:
 
 class Student:
@@ -2428,6 +2385,3 @@ Jessa 20 ABC School
 Jessa 20 XYZ School
 <bound method Student.change_School of <class '__main__.Student'>>
 
-=================================================================================================================================
-
-========================================================================================================================================================
