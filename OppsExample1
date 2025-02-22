@@ -1766,8 +1766,9 @@ class VIII
 Roll Number: 20 Name: Emma Age: 14
 class IX
 Roll Number: 35 Name: Emma Age: 15
+====================================================================================================================
 Create Instance Variables in Instance Method
-Till the time we used constructor to create instance attributes. But, instance attributes are not specific only to the __init__() method; they can be defined elsewhere in the class. So, let’s see how to create an instance variable inside the method.
+
 
 Example:
 
@@ -1790,21 +1791,12 @@ stud.add_marks(75)
 
 # display object
 print('Roll Number:', stud.roll_no, 'Name:', stud.name, 'Age:', stud.age, 'Marks:', stud.marks)
- Run
+ 
 Output:
 
 Roll Number: 20 Name: Emma Age: 14 Marks: 75
 Dynamically Add Instance Method to a Object
-Usually, we add methods to a class body when defining a class. However, Python is a dynamic language that allows us to add or delete instance methods at runtime. Therefore, it is helpful in the following scenarios.
-
-When class is in a different file, and you don’t have access to modify the class structure
-You wanted to extend the class functionality without changing its basic structure because many systems use the same structure.
-Let’s see how to add an instance method in the Student class at runtime.
-
-Example:
-
-We should add a method to the object, so other instances don’t have access to that method. We use the types module’s MethodType() to add a method to an object. Below is the simplest way to method to an object.
-
+===========================================================================================================
 import types
 
 class Student:
@@ -1837,18 +1829,7 @@ Output:
 Name: Jessa Age: 15
 Hello Jessa Welcome to Class IX
 Dynamically Delete Instance Methods
-We can dynamically delete the instance method from the class. In Python, there are two ways to delete method:
-
-By using the del operator
-By using delattr() method
-By using the del operator
-
-The del operator removes the instance method added by class.
-
-Example:
-
-In this example, we will delete an instance method named percentage() from a Student class. If you try to access it after removing it, you’ll get an Attribute Error.
-
+===================================================================================================================================
 class Student:
     # constructor
     def __init__(self, name, age):
