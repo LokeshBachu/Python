@@ -1252,3 +1252,1182 @@ True
 True
 False
 
+===============================================================================================================================
+class Student:
+    # constructor
+    def __init__(self, name, age):
+        # Instance variable
+        self.name = name
+        self.age = age
+
+    # instance method access instance variable
+    def show(self):
+        print('Name:', self.name, 'Age:', self.age)
+
+# create first object
+print('First Student')
+emma = Student("Jessa", 14)
+# call instance method
+emma.show()
+
+# create second object
+print('Second Student')
+kelly = Student("Kelly", 16)
+# call instance method
+kelly.show()
+Output:
+
+First Student
+Name: Jessa Age: 14
+
+Second Student
+Name: Kelly Age: 16
+======================================================================================================================================
+Modify Instance Variables inside Instance Method
+
+class Student:
+    def __init__(self, roll_no, name, age):
+        # Instance variable
+        self.roll_no = roll_no
+        self.name = name
+        self.age = age
+
+    # instance method access instance variable
+    def show(self):
+        print('Roll Number:', self.roll_no, 'Name:', self.name, 'Age:', self.age)
+
+    # instance method to modify instance variable
+    def update(self, roll_number, age):
+        self.roll_no = roll_number
+        self.age = age
+
+# create object
+print('class VIII')
+stud = Student(20, "Emma", 14)
+# call instance method
+stud.show()
+
+# Modify instance variables
+print('class IX')
+stud.update(35, 15)
+stud.show()
+Output:
+
+class VIII
+Roll Number: 20 Name: Emma Age: 14
+class IX
+Roll Number: 35 Name: Emma Age: 15
+========================================================================================================================================
+#Create Instance Variables in Instance Method
+class Student:
+    def __init__(self, roll_no, name, age):
+        # Instance variable
+        self.roll_no = roll_no
+        self.name = name
+        self.age = age
+
+    # instance method to add instance variable
+    def add_marks(self, marks):
+        # add new attribute to current object
+        self.marks = marks
+
+# create object
+stud = Student(20, "Emma", 14)
+# call instance method
+stud.add_marks(75)
+
+# display object
+print('Roll Number:', stud.roll_no, 'Name:', stud.name, 'Age:', stud.age, 'Marks:', stud.marks)
+Output:
+Roll Number: 20 Name: Emma Age: 14 Marks: 75'
+=================================================================================================================================================
+#Dynamically Add Instance Method to a Object
+import types
+
+class Student:
+    # constructor
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    # instance method
+    def show(self):
+        print('Name:', self.name, 'Age:', self.age)
+
+# create new method
+def welcome(self):
+    print("Hello", self.name, "Welcome to Class IX")
+
+
+# create object
+s1 = Student("Jessa", 15)
+
+# Add instance method to object
+s1.welcome = types.MethodType(welcome, s1)
+s1.show()
+
+# call newly added method
+s1.welcome()
+Output:
+
+Name: Jessa Age: 15
+Hello Jessa Welcome to Class IX
+=============================================================================================================================================
+#Dynamically Delete Instance Methods
+Home » Python » Python Object-Oriented Programming (OOP) » Python Instance Methods Explained With Examples
+Python Instance Methods Explained With Examples
+Updated on: August 28, 2021 | 7 Comments
+
+In Python object-oriented programming, when we design a class, we use the instance methods and class methods.
+
+Inside a Class, we can define the following two types of methods.
+
+Instance methods: Used to access or modify the object state. If we use instance variables inside a method, such methods are called instance methods. It must have a self parameter to refer to the current object.
+Class methods: Used to access or modify the class state. In method implementation, if we use only class variables, then such type of methods we should declare as a class method. The class method has a cls parameter which refers to the class.
+Also, read Python Class method vs Static method vs Instance method.
+
+After reading this article, you’ll learn:
+
+How to create and call instance methods
+how to dynamically add or delete instance methods in Python
+Table of contents
+What is Instance Methods in Python
+Define Instance Method
+Calling An Instance Method
+Modify Instance Variables inside Instance Method
+Create Instance Variables in Instance Method
+Dynamically Add Instance Method to a Object
+Dynamically Delete Instance Methods
+What is Instance Methods in Python
+If we use instance variables inside a method, such methods are called instance methods. The instance method performs a set of actions on the data/value provided by the instance variables.
+
+A instance method is bound to the object of the class.
+It can access or modify the object state by changing the value of a instance variables
+When we create a class in Python, instance methods are used regularly. To work with an instance method, we use the self keyword. We use the self keyword as the first parameter to a method. The self refers to the current object.
+
+Any method we create in a class will automatically be created as an instance method unless we explicitly tell Python that it is a class or static method.
+
+Instance method in Python
+Instance method in Python
+Define Instance Method
+Instance variables are not shared between objects. Instead, every object has its copy of the instance attribute. Using the instance method, we can access or modify the calling object’s attributes.
+
+Instance methods are defined inside a class, and it is pretty similar to defining a regular function.
+
+Use the def keyword to define an instance method in Python.
+Use self as the first parameter in the instance method when defining it. The self parameter refers to the current object.
+Using the self parameter to access or modify the current object attributes.
+You may use a variable named differently for self, but it is discouraged since self is the recommended convention in Python.
+
+Let’s see the example to create an instance method show() in the Student class to display the student details.
+
+Example:
+
+class Student:
+    # constructor
+    def __init__(self, name, age):
+        # Instance variable
+        self.name = name
+        self.age = age
+
+    # instance method to access instance variable
+    def show(self):
+        print('Name:', self.name, 'Age:', self.age)
+
+Calling An Instance Method
+We use an object and dot (.) operator to execute the block of code or action defined in the instance method.
+
+First, create instance variables name and age in the Student class.
+Next, create an instance method display() to print student name and age.
+Next, create object of a Student class to call the instance method.
+et’s see how to call an instance method show() to access the student object details such as name and age.
+
+class Student:
+    # constructor
+    def __init__(self, name, age):
+        # Instance variable
+        self.name = name
+        self.age = age
+
+    # instance method access instance variable
+    def show(self):
+        print('Name:', self.name, 'Age:', self.age)
+
+# create first object
+print('First Student')
+emma = Student("Jessa", 14)
+# call instance method
+emma.show()
+
+# create second object
+print('Second Student')
+kelly = Student("Kelly", 16)
+# call instance method
+kelly.show()
+ Run
+Output:
+
+First Student
+Name: Jessa Age: 14
+
+Second Student
+Name: Kelly Age: 16
+Note:
+
+Inside any instance method, we can use self to access any data or method that reside in our class. We are unable to access it without a self parameter.
+
+An instance method can freely access attributes and even modify the value of attributes of an object by using the self parameter.
+
+By Using self.__class__ attribute we can access the class attributes and change the class state. Therefore instance method gives us control of changing the object as well as the class state.
+
+Modify Instance Variables inside Instance Method
+Let’s create the instance method update() method to modify the student age and roll number when student data details change.
+
+class Student:
+    def __init__(self, roll_no, name, age):
+        # Instance variable
+        self.roll_no = roll_no
+        self.name = name
+        self.age = age
+
+    # instance method access instance variable
+    def show(self):
+        print('Roll Number:', self.roll_no, 'Name:', self.name, 'Age:', self.age)
+
+    # instance method to modify instance variable
+    def update(self, roll_number, age):
+        self.roll_no = roll_number
+        self.age = age
+
+# create object
+print('class VIII')
+stud = Student(20, "Emma", 14)
+# call instance method
+stud.show()
+
+# Modify instance variables
+print('class IX')
+stud.update(35, 15)
+stud.show()
+ Run
+Output:
+
+class VIII
+Roll Number: 20 Name: Emma Age: 14
+class IX
+Roll Number: 35 Name: Emma Age: 15
+Create Instance Variables in Instance Method
+Till the time we used constructor to create instance attributes. But, instance attributes are not specific only to the __init__() method; they can be defined elsewhere in the class. So, let’s see how to create an instance variable inside the method.
+
+Example:
+
+class Student:
+    def __init__(self, roll_no, name, age):
+        # Instance variable
+        self.roll_no = roll_no
+        self.name = name
+        self.age = age
+
+    # instance method to add instance variable
+    def add_marks(self, marks):
+        # add new attribute to current object
+        self.marks = marks
+
+# create object
+stud = Student(20, "Emma", 14)
+# call instance method
+stud.add_marks(75)
+
+# display object
+print('Roll Number:', stud.roll_no, 'Name:', stud.name, 'Age:', stud.age, 'Marks:', stud.marks)
+ Run
+Output:
+
+Roll Number: 20 Name: Emma Age: 14 Marks: 75
+Dynamically Add Instance Method to a Object
+Usually, we add methods to a class body when defining a class. However, Python is a dynamic language that allows us to add or delete instance methods at runtime. Therefore, it is helpful in the following scenarios.
+
+When class is in a different file, and you don’t have access to modify the class structure
+You wanted to extend the class functionality without changing its basic structure because many systems use the same structure.
+Let’s see how to add an instance method in the Student class at runtime.
+
+Example:
+
+We should add a method to the object, so other instances don’t have access to that method. We use the types module’s MethodType() to add a method to an object. Below is the simplest way to method to an object.
+
+import types
+
+class Student:
+    # constructor
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    # instance method
+    def show(self):
+        print('Name:', self.name, 'Age:', self.age)
+
+# create new method
+def welcome(self):
+    print("Hello", self.name, "Welcome to Class IX")
+
+
+# create object
+s1 = Student("Jessa", 15)
+
+# Add instance method to object
+s1.welcome = types.MethodType(welcome, s1)
+s1.show()
+
+# call newly added method
+s1.welcome()
+ Run
+Output:
+
+Name: Jessa Age: 15
+Hello Jessa Welcome to Class IX
+Dynamically Delete Instance Methods
+We can dynamically delete the instance method from the class. In Python, there are two ways to delete method:
+
+By using the del operator
+By using delattr() method
+By using the del operator
+
+The del operator removes the instance method added by class.
+
+Example:
+
+In this example, we will delete an instance method named percentage() from a Student class. If you try to access it after removing it, you’ll get an Attribute Error.
+
+class Student:
+    # constructor
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    # instance method
+    def show(self):
+        print('Name:', self.name, 'Age:', self.age)
+
+    # instance method
+    def percentage(self, sub1, sub2):
+        print('Percentage:', (sub1 + sub2) / 2)
+
+emma = Student('Emma', 14)
+emma.show()
+emma.percentage(67, 62)
+
+# Delete the method from class using del operator
+del emma.percentage
+
+# Again calling percentage() method
+# It will raise error
+emma.percentage(67, 62)
+
+Home » Python » Python Object-Oriented Programming (OOP) » Python Instance Methods Explained With Examples
+Python Instance Methods Explained With Examples
+Updated on: August 28, 2021 | 7 Comments
+
+In Python object-oriented programming, when we design a class, we use the instance methods and class methods.
+
+Inside a Class, we can define the following two types of methods.
+
+Instance methods: Used to access or modify the object state. If we use instance variables inside a method, such methods are called instance methods. It must have a self parameter to refer to the current object.
+Class methods: Used to access or modify the class state. In method implementation, if we use only class variables, then such type of methods we should declare as a class method. The class method has a cls parameter which refers to the class.
+Also, read Python Class method vs Static method vs Instance method.
+
+After reading this article, you’ll learn:
+
+How to create and call instance methods
+how to dynamically add or delete instance methods in Python
+Table of contents
+What is Instance Methods in Python
+Define Instance Method
+Calling An Instance Method
+Modify Instance Variables inside Instance Method
+Create Instance Variables in Instance Method
+Dynamically Add Instance Method to a Object
+Dynamically Delete Instance Methods
+What is Instance Methods in Python
+If we use instance variables inside a method, such methods are called instance methods. The instance method performs a set of actions on the data/value provided by the instance variables.
+
+A instance method is bound to the object of the class.
+It can access or modify the object state by changing the value of a instance variables
+When we create a class in Python, instance methods are used regularly. To work with an instance method, we use the self keyword. We use the self keyword as the first parameter to a method. The self refers to the current object.
+
+Any method we create in a class will automatically be created as an instance method unless we explicitly tell Python that it is a class or static method.
+
+Instance method in Python
+Instance method in Python
+Define Instance Method
+Instance variables are not shared between objects. Instead, every object has its copy of the instance attribute. Using the instance method, we can access or modify the calling object’s attributes.
+
+Instance methods are defined inside a class, and it is pretty similar to defining a regular function.
+
+Use the def keyword to define an instance method in Python.
+Use self as the first parameter in the instance method when defining it. The self parameter refers to the current object.
+Using the self parameter to access or modify the current object attributes.
+You may use a variable named differently for self, but it is discouraged since self is the recommended convention in Python.
+
+Let’s see the example to create an instance method show() in the Student class to display the student details.
+
+Example:
+
+class Student:
+    # constructor
+    def __init__(self, name, age):
+        # Instance variable
+        self.name = name
+        self.age = age
+
+    # instance method to access instance variable
+    def show(self):
+        print('Name:', self.name, 'Age:', self.age)
+
+Calling An Instance Method
+We use an object and dot (.) operator to execute the block of code or action defined in the instance method.
+
+First, create instance variables name and age in the Student class.
+Next, create an instance method display() to print student name and age.
+Next, create object of a Student class to call the instance method.
+et’s see how to call an instance method show() to access the student object details such as name and age.
+
+class Student:
+    # constructor
+    def __init__(self, name, age):
+        # Instance variable
+        self.name = name
+        self.age = age
+
+    # instance method access instance variable
+    def show(self):
+        print('Name:', self.name, 'Age:', self.age)
+
+# create first object
+print('First Student')
+emma = Student("Jessa", 14)
+# call instance method
+emma.show()
+
+# create second object
+print('Second Student')
+kelly = Student("Kelly", 16)
+# call instance method
+kelly.show()
+ Run
+Output:
+
+First Student
+Name: Jessa Age: 14
+
+Second Student
+Name: Kelly Age: 16
+Note:
+
+Inside any instance method, we can use self to access any data or method that reside in our class. We are unable to access it without a self parameter.
+
+An instance method can freely access attributes and even modify the value of attributes of an object by using the self parameter.
+
+By Using self.__class__ attribute we can access the class attributes and change the class state. Therefore instance method gives us control of changing the object as well as the class state.
+
+Modify Instance Variables inside Instance Method
+Let’s create the instance method update() method to modify the student age and roll number when student data details change.
+
+class Student:
+    def __init__(self, roll_no, name, age):
+        # Instance variable
+        self.roll_no = roll_no
+        self.name = name
+        self.age = age
+
+    # instance method access instance variable
+    def show(self):
+        print('Roll Number:', self.roll_no, 'Name:', self.name, 'Age:', self.age)
+
+    # instance method to modify instance variable
+    def update(self, roll_number, age):
+        self.roll_no = roll_number
+        self.age = age
+
+# create object
+print('class VIII')
+stud = Student(20, "Emma", 14)
+# call instance method
+stud.show()
+
+# Modify instance variables
+print('class IX')
+stud.update(35, 15)
+stud.show()
+ Run
+Output:
+
+class VIII
+Roll Number: 20 Name: Emma Age: 14
+class IX
+Roll Number: 35 Name: Emma Age: 15
+Create Instance Variables in Instance Method
+Till the time we used constructor to create instance attributes. But, instance attributes are not specific only to the __init__() method; they can be defined elsewhere in the class. So, let’s see how to create an instance variable inside the method.
+
+Example:
+
+class Student:
+    def __init__(self, roll_no, name, age):
+        # Instance variable
+        self.roll_no = roll_no
+        self.name = name
+        self.age = age
+
+    # instance method to add instance variable
+    def add_marks(self, marks):
+        # add new attribute to current object
+        self.marks = marks
+
+# create object
+stud = Student(20, "Emma", 14)
+# call instance method
+stud.add_marks(75)
+
+# display object
+print('Roll Number:', stud.roll_no, 'Name:', stud.name, 'Age:', stud.age, 'Marks:', stud.marks)
+ Run
+Output:
+
+Roll Number: 20 Name: Emma Age: 14 Marks: 75
+Dynamically Add Instance Method to a Object
+Usually, we add methods to a class body when defining a class. However, Python is a dynamic language that allows us to add or delete instance methods at runtime. Therefore, it is helpful in the following scenarios.
+
+When class is in a different file, and you don’t have access to modify the class structure
+You wanted to extend the class functionality without changing its basic structure because many systems use the same structure.
+Let’s see how to add an instance method in the Student class at runtime.
+
+Example:
+
+We should add a method to the object, so other instances don’t have access to that method. We use the types module’s MethodType() to add a method to an object. Below is the simplest way to method to an object.
+
+import types
+
+class Student:
+    # constructor
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    # instance method
+    def show(self):
+        print('Name:', self.name, 'Age:', self.age)
+
+# create new method
+def welcome(self):
+    print("Hello", self.name, "Welcome to Class IX")
+
+
+# create object
+s1 = Student("Jessa", 15)
+
+# Add instance method to object
+s1.welcome = types.MethodType(welcome, s1)
+s1.show()
+
+# call newly added method
+s1.welcome()
+ Run
+Output:
+
+Name: Jessa Age: 15
+Hello Jessa Welcome to Class IX
+Dynamically Delete Instance Methods
+We can dynamically delete the instance method from the class. In Python, there are two ways to delete method:
+
+By using the del operator
+By using delattr() method
+By using the del operator
+
+The del operator removes the instance method added by class.
+
+Example:
+
+In this example, we will delete an instance method named percentage() from a Student class. If you try to access it after removing it, you’ll get an Attribute Error.
+
+class Student:
+    # constructor
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    # instance method
+    def show(self):
+        print('Name:', self.name, 'Age:', self.age)
+
+    # instance method
+    def percentage(self, sub1, sub2):
+        print('Percentage:', (sub1 + sub2) / 2)
+
+emma = Student('Emma', 14)
+emma.show()
+emma.percentage(67, 62)
+
+# Delete the method from class using del operator
+del emma.percentage
+
+# Again calling percentage() method
+# It will raise error
+emma.percentage(67, 62)
+
+
+Output:
+
+Name: Emma Age: 14
+Percentage: 64.5
+
+ File "/demos/oop/delete_method.py", line 21, in <module>
+    del emma.percentage
+AttributeError: percentage
+=========================================================================================================
+emma = Student('Emma', 14)
+emma.show()
+emma.percentage(67, 62)
+
+# delete instance method percentage() using delattr()
+delattr(emma, 'percentage')
+emma.show()
+
+# Again calling percentage() method
+# It will raise error
+emma.percentage(67, 62)
+=================================================================================================================
+#@Class method example
+from datetime import date
+
+class Student:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    @classmethod
+    def calculate_age(cls, name, birth_year):
+        # calculate age an set it as a age
+        # return new object
+        return cls(name, date.today().year - birth_year)
+
+    def show(self):
+        print(self.name + "'s age is: " + str(self.age))
+
+jessa = Student('Jessa', 20)
+jessa.show()
+
+# create new object using the factory method
+joy = Student.calculate_age("Joy", 1995)
+joy.show()
+ Run
+Output
+
+Jessa's age is: 20
+John's age is: 26
+==============================================================================================================================
+Example: Create class method using classmethod() function
+
+class School:
+    # class variable
+    name = 'ABC School'
+
+    def school_name(cls):
+        print('School Name is :', cls.name)
+
+# create class method
+School.school_name = classmethod(School.school_name)
+
+# call class method
+School.school_name()
+ Run
+Output
+
+School Name is : ABC School
+=================================================================================================
+#Access Class Variables in Class Methods
+class Student:
+    school_name = 'ABC School'
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    @classmethod
+    def change_school(cls, school_name):
+        # class_name.class_variable
+        cls.school_name = school_name
+
+    # instance method
+    def show(self):
+        print(self.name, self.age, 'School:', Student.school_name)
+
+jessa = Student('Jessa', 20)
+jessa.show()
+
+# change school_name
+Student.change_school('XYZ School')
+jessa.show()
+ Run
+Output:
+
+Jessa 20 School: ABC School
+Jessa 20 School: XYZ School
+
+=============================================================================================================================
+#Class Method in Inheritance
+class Vehicle:
+    brand_name = 'BMW'
+
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
+
+    @classmethod
+    def from_price(cls, name, price):
+        # ind_price = dollar * 76
+        # create new Vehicle object
+        return cls(name, (price * 75))
+
+    def show(self):
+        print(self.name, self.price)
+
+class Car(Vehicle):
+    def average(self, distance, fuel_used):
+        mileage = distance / fuel_used
+        print(self.name, 'Mileage', mileage)
+
+bmw_us = Car('BMW X5', 65000)
+bmw_us.show()
+
+# class method of parent class is available to child class
+# this will return the object of calling class
+bmw_ind = Car.from_price('BMW X5', 65000)
+bmw_ind.show()
+
+# check type
+print(type(bmw_ind))
+ 
+Output
+
+BMW X5 65000
+BMW X5 4875000
+===========================================================================================================================
+#Dynamically Add Class Method to a Class
+
+class Student:
+    school_name = 'ABC School'
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def show(self):
+        print(self.name, self.age)
+
+# class ended
+
+# method outside class
+def exercises(cls):
+    # access class variables
+    print("Below exercises for", cls.school_name)
+
+# Adding class method at runtime to class
+Student.exercises = classmethod(exercises)
+
+jessa = Student("Jessa", 14)
+jessa.show()
+# call the new method
+Student.exercises()
+ Run
+Output
+
+Jessa 14
+Below exercises for ABC School
+======================================================================================================================================
+#example, we will delete the class method named change_school()
+
+class Student:
+    school_name = 'ABC School'
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    @classmethod
+    def change_school(cls, school_name):
+        cls.school_name = school_name
+
+jessa = Student('Jessa', 20)
+print(Student.change_school('XYZ School'))
+print(Student.school_name)
+
+# delete class method
+del Student.change_school
+
+# call class method
+# it will give error
+print(Student.change_school('PQR School'))
+
+Output
+
+XYZ School
+AttributeError: type object 'Student' has no attribute 'change_school'
+==============================================================================================================================================
+#delattr
+
+jessa = Student('Jessa', 20)
+print(Student.change_school('XYZ School'))
+print(Student.school_name)
+
+# delete class method
+delattr(Student, 'change_school')
+
+# call class method
+# it will give error
+print(Student.change_school('PQR School'))
+
+Output
+
+XYZ School
+AttributeError: type object 'Student' has no attribute 'change_school'
+=================================================================================================================================================
+#Static method examples
+class Employee:
+    @staticmethod
+    def sample(x):
+        print('Inside static method', x)
+
+# call static method
+Employee.sample(10)
+
+# can be called using object
+emp = Employee()
+emp.sample(10)
+==========================================================================================================================================================
+class Employee(object):
+
+    def __init__(self, name, salary, project_name):
+        self.name = name
+        self.salary = salary
+        self.project_name = project_name
+
+    @staticmethod
+    def gather_requirement(project_name):
+        if project_name == 'ABC Project':
+            requirement = ['task_1', 'task_2', 'task_3']
+        else:
+            requirement = ['task_1']
+        return requirement
+
+    # instance method
+    def work(self):
+        # call static method from instance method
+        requirement = self.gather_requirement(self.project_name)
+        for task in requirement:
+            print('Completed', task)
+
+emp = Employee('Kelly', 12000, 'ABC Project')
+emp.work()
+ 
+Output:
+
+Completed task_1
+Completed task_2
+Completed task_3
+=======================================================================================================================================================
+#Using the static() function
+class Employee:
+    def sample(x):
+        print('Inside static method', x)
+
+# convert to static method
+Employee.sample = staticmethod(Employee.sample)
+# call static method
+Employee.sample(10)
+=============================================================================================================================================
+#Call Static Method from Another Method
+class Test :
+    @staticmethod
+    def static_method_1():
+        print('static method 1')
+
+    @staticmethod
+    def static_method_2() :
+        Test.static_method_1()
+
+    @classmethod
+    def class_method_1(cls) :
+        cls.static_method_2()
+
+# call class method
+Test.class_method_1()
+ 
+Output:
+
+static method 1
+================================================================================================================================================
+#instance vs static vs class methods
+
+class Student:
+    # class variables
+    school_name = 'ABC School'
+
+    # constructor
+    def __init__(self, name, age):
+        # instance variables
+        self.name = name
+        self.age = age
+
+    # instance variables
+    def show(self):
+        print(self.name, self.age, Student.school_name)
+
+    @classmethod
+    def change_School(cls, name):
+        cls.school_name = name
+
+    @staticmethod
+    def find_notes(subject_name):
+        return ['chapter 1', 'chapter 2', 'chapter 3']
+
+# create object
+jessa = Student('Jessa', 12)
+# call instance method
+jessa.show()
+
+# call class method using the class
+Student.change_School('XYZ School')
+# call class method using the object
+jessa.change_School('PQR School')
+
+# call static method using the class
+Student.find_notes('Math')
+# call class method using the object
+jessa.find_notes('Math')
+
+#Output:
+Jessa 12 ABC School
+School name changed to XYZ School
+School name changed to PQR School
+==================================================================================================================
+#Attribute access
+class Student:
+    # class variables
+    school_name = 'ABC School'
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    # instance method
+    def show(self):
+        # access instance variables
+        print('Student:', self.name, self.age)
+        # access class variables
+        print('School:', self.school_name)
+
+    @classmethod
+    def change_School(cls, name):
+        # access class variable
+        print('Previous School name:', cls.school_name)
+        cls.school_name = name
+        print('School name changed to', Student.school_name)
+
+    @staticmethod
+    def find_notes(subject_name):
+        # can't access instance or class attributes
+        return ['chapter 1', 'chapter 2', 'chapter 3']
+
+# create object
+jessa = Student('Jessa', 12)
+# call instance method
+jessa.show()
+
+# call class method
+Student.change_School('XYZ School')
+Home » Python » Python Object-Oriented Programming (OOP) » Python Class Method vs. Static Method vs. Instance Method
+Python Class Method vs. Static Method vs. Instance Method
+Updated on: August 28, 2021 | 7 Comments
+
+In this tutorial, you’ll understand the difference between class method vs. static method vs. instance method step by step.
+
+In Object-oriented programming, when we design a class, we use the following three methods
+
+Instance method performs a set of actions on the data/value provided by the instance variables. If we use instance variables inside a method, such methods are called instance methods.
+Class method is method that is called on the class itself, not on a specific object instance. Therefore, it belongs to a class level, and all class instances share a class method.
+Static method is a general utility method that performs a task in isolation. This method doesn’t have access to the instance and class variable.
+Python class method vs static method vs instance method
+class method vs static method vs instance method
+Table of contents
+Difference #1: Primary Use
+Difference #2: Method Defination
+Difference #3: Method Call
+Difference #4: Attribute Access
+Difference #5: Class Bound and Instance Bound
+Difference #1: Primary Use
+Class method Used to access or modify the class state. It can modify the class state by changing the value of a class variable that would apply across all the class objects.
+The instance method acts on an object’s attributes. It can modify the object state by changing the value of instance variables.
+Static methods have limited use because they don’t have access to the attributes of an object (instance variables) and class attributes (class variables). However, they can be helpful in utility such as conversion form one type to another.
+Class methods are used as a factory method. Factory methods are those methods that return a class object for different use cases. For example, you need to do some pre-processing on the provided data before creating an object.
+
+Read our separate tutorial on
+
+Instance methods in Python
+Class method in Python
+Static method in Python
+Difference #2: Method Defination
+Let’s learn how to define instance method, class method, and static method in a class. All three methods are defined in different ways.
+
+All three methods are defined inside a class, and it is pretty similar to defining a regular function.
+Any method we create in a class will automatically be created as an instance method. We must explicitly tell Python that it is a class method or static method.
+Use the @classmethod decorator or the classmethod() function to define the class method
+Use the @staticmethod decorator or the staticmethod() function to define a static method.
+Example:
+
+Use self as the first parameter in the instance method when defining it. The self parameter refers to the current object.
+On the other hand, Use cls as the first parameter in the class method when defining it. The cls refers to the class.
+A static method doesn’t take instance or class as a parameter because they don’t have access to the instance variables and class variables.
+class Student:
+    # class variables
+    school_name = 'ABC School'
+
+    # constructor
+    def __init__(self, name, age):
+        # instance variables
+        self.name = name
+        self.age = age
+
+    # instance variables
+    def show(self):
+        print(self.name, self.age, Student.school_name)
+
+    @classmethod
+    def change_School(cls, name):
+        cls.school_name = name
+
+    @staticmethod
+    def find_notes(subject_name):
+        return ['chapter 1', 'chapter 2', 'chapter 3']
+
+As you can see in the example, in the instance
+
+Difference #3: Method Call
+Class methods and static methods can be called using ClassName or by using a class object.
+The Instance method can be called only using the object of the class.
+Example:
+
+# create object
+jessa = Student('Jessa', 12)
+# call instance method
+jessa.show()
+
+# call class method using the class
+Student.change_School('XYZ School')
+# call class method using the object
+jessa.change_School('PQR School')
+
+# call static method using the class
+Student.find_notes('Math')
+# call class method using the object
+jessa.find_notes('Math')
+
+Output:
+
+Jessa 12 ABC School
+School name changed to XYZ School
+School name changed to PQR School
+Difference #4: Attribute Access
+Both class and object have attributes. Class attributes include class variables, and object attributes include instance variables.
+
+The instance method can access both class level and object attributes. Therefore, It can modify the object state.
+Class methods can only access class level attributes. Therefore, It can modify the class state.
+A static method doesn’t have access to the class attribute and instance attributes. Therefore, it cannot modify the class or object state.
+Example:
+
+class Student:
+    # class variables
+    school_name = 'ABC School'
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    # instance method
+    def show(self):
+        # access instance variables
+        print('Student:', self.name, self.age)
+        # access class variables
+        print('School:', self.school_name)
+
+    @classmethod
+    def change_School(cls, name):
+        # access class variable
+        print('Previous School name:', cls.school_name)
+        cls.school_name = name
+        print('School name changed to', Student.school_name)
+
+    @staticmethod
+    def find_notes(subject_name):
+        # can't access instance or class attributes
+        return ['chapter 1', 'chapter 2', 'chapter 3']
+
+# create object
+jessa = Student('Jessa', 12)
+# call instance method
+jessa.show()
+
+# call class method
+Student.change_School('XYZ School')
+ Run
+Output:
+
+Student: Jessa 12
+School: ABC School
+Previous School name: ABC School
+School name changed to XYZ School
+=====================================================================================================================================================
+#Class Bound and Instance Bound
+class Student:
+    def __init__(self, roll_no): self.roll_no = roll_no
+
+    # instance method
+    def show(self):
+        print('In Instance method')
+
+    @classmethod
+    def change_school(cls, name):
+        print('In class method')
+
+    @staticmethod
+    def find_notes(subject_name):
+        print('In Static method')
+
+# create two objects
+jessa = Student(12)
+
+# instance method bound to object
+print(jessa.show)
+
+# class method bound to class
+print(jessa.change_school)
+
+# static method bound to class
+print(jessa.find_notes)
+# create two objects
+jessa = Student(12)
+kelly = Student(25)
+
+# False because two separate copies
+print(jessa.show is kelly.show)
+
+# True objects share same copies of static methods
+print(jessa.find_notes is kelly.find_notes)
+
+Output:
+Jessa 20 ABC School
+Jessa 20 XYZ School
+<bound method Student.change_School of <class '__main__.Student'>>
+
+=================================================================================================================================
+
+========================================================================================================================================================
