@@ -217,7 +217,6 @@ def double_return_value(func):
         result = func(*args, **kwargs)
         return result * 2  # Modify the return value by doubling it
     return wrapper
-
 # Applying the decorator to different functions
 
 @double_return_value
@@ -242,3 +241,395 @@ Output:
 30
 Hello, Amit!Hello, Amit!
 =====================================================================================================================
+Chaining Decorators
+Chaining decorators in Python means applying multiple decorators to a single function. The process involved placing several decorators one after the other, where the innermost decorator is applied first. 
+
+Example
+import functools
+
+# Define the first decorator to double the return value
+def double_return_value(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        result = func(*args, **kwargs)
+        return result * 2
+    return wrapper
+
+# Define the second decorator to square the return value
+def square_return_value(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        result = func(*args, **kwargs)
+        return result ** 2
+    return wrapper
+
+# Applying both decorators to a single function
+@double_return_value
+@square_return_value
+def get_number():
+    """Returns the number 5."""
+    return 5
+
+# Calling the decorated function
+result = get_number()
+
+# Output
+print(result)  # Output: 100
+
+Output:
+50
+=============================================================================================================================================================================================
+Decorators with Arguments
+We can pass arguments to decorators by defining the decorator within another function that takes the arguments. After this, we use those arguments within the decorator. Also, we return it from the enclosing function.
+
+Example
+# Define the outer function that takes arguments for the decorator
+def repeat(n):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            for _ in range(n):
+                result = func(*args, **kwargs)
+            return result
+        return wrapper
+    return decorator
+
+# Use the decorator with arguments
+@repeat(3)
+def greet(name):
+    print(f"Hello, {name}!")
+
+# Call the decorated function
+greet("Raman")
+
+Output:
+Hello, Raman!
+Hello, Raman!
+Hello, Raman!
+=======================================================================================================================================================================================================
+Fancy Decorators
+Now that you know how to use Python decorators on Functions let’s see how to use decorators with classes. These decorators are called fancy decorators, and we can achieve them through the following two methods:
+
+Decorating the methods of a class
+
+Decorating a complete class
+
+Here is an Example of three decorators in Python
+
+#1. @classmethod
+
+class Person:
+    count = 0
+
+    def __init__(self, name):
+        self.name = name
+        Person.count += 1
+
+    @classmethod
+    def get_person_count(cls):
+        return cls.count
+
+# Create some instances
+person1 = Person("Alice")
+person2 = Person("Bob")
+
+# Call the class method
+print(Person.get_person_count())  # Output: 2
+
+Output:
+2
+===================================================================================================================
+#2. @staticmethod
+class MathUtils:
+    
+    @staticmethod
+    def add(x, y):
+        return x + y
+
+# Call the static method
+print(MathUtils.add(5, 3))  # Output: 8
+============================================================================================================================
+#3. @property
+class Rectangle:
+    def __init__(self, width, height):
+        self._width = width
+        self._height = height
+
+    @property
+    def area(self):
+        return self._width * self._height
+
+    @property
+    def dimensions(self):
+        return (self._width, self._height)
+
+    @dimensions.setter
+    def dimensions(self, value):
+        self._width, self._height = value
+
+# Create an instance
+rect = Rectangle(5, 10)
+
+# Access the property
+print(rect.area)  # Output: 50
+
+# Modify dimensions using the setter
+rect.dimensions = (8, 12)
+print(rect.area)  # Output: 96
+
+Output:
+50
+96
+=======================================================================================================================================================================================
+#2. Decorating a Complete Class
+
+Example
+# Define the class decorator
+def log_instantiation(cls):
+    class Wrapped(cls):
+        def __init__(self, *args, **kwargs):
+            print(f"Creating an instance of {cls.__name__} with arguments: {args}, {kwargs}")
+            super().__init__(*args, **kwargs)
+    return Wrapped
+
+# Use the class decorator
+@log_instantiation
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def greet(self):
+        print(f"Hello, my name is {self.name} and I am {self.age} years old.")
+
+# Create instances of the decorated class
+person1 = Person("Raman", 30)
+person2 = Person("Geeta", 25)
+
+Output:
+Creating an instance of Person with arguments: ('Raman', 30), {}
+Creating an instance of Person with arguments: ('Geeta', 25), {}
+===============================================================================================================================================================================================
+#Classes as Decorators in Python
+#Classes are known to be the best way to maintain the state of data, and we can use them as decorators. To do this, we use the __init__ function, which takes the function as an argument. As the class is used as a decorator, which must be a callable object, the class must implement the __call__ method. When we use a class as a decorator, we use functools.update_wrapper rather than functools.wraps. 
+
+#Example
+import time
+from functools import update_wrapper
+
+# Define the class-based decorator
+class Timer:
+    def __init__(self, func):
+        self.func = func
+        update_wrapper(self, func)  # Update metadata of the function
+
+    def __call__(self, *args, **kwargs):
+        start_time = time.time()
+        result = self.func(*args, **kwargs)
+        end_time = time.time()
+        print(f"Function {self.func.__name__} took {end_time - start_time:.4f} seconds to execute")
+        return result
+
+# Use the class as a decorator
+@Timer
+def slow_function(x):
+    time.sleep(x)
+    return f"Finished sleeping for {x} seconds"
+
+# Call the decorated function
+result = slow_function(2)
+print(result)
+
+Output:
+Function slow_function took 2.0005 seconds to execute
+Finished sleeping for 2 seconds
+
+=========================================================================================================================================================
+#overloaded in python
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __add__(self, other):
+        return Point(self.x + other.x, self.y + other.y)
+
+    def __str__(self):
+        return f"({self.x}, {self.y})"
+
+p1 = Point(2, 3)
+p2 = Point(4, 5)
+p3 = p1 + p2
+
+print(p3)  # Output: (6, 8)
+
+Output:
+  # Output: (6, 8)
+===========================================================================================================================================================
+#Overloading Binary + Operator in Python
+class ComplexNumber:
+    def __init__(self, real, imag):
+        self.real = real
+        self.imag = imag
+
+    # Overloading the binary + operator
+    def __add__(self, other):
+        real_part = self.real + other.real
+        imag_part = self.imag + other.imag
+        return ComplexNumber(real_part, imag_part)
+
+    def __str__(self):
+        return f"{self.real} + {self.imag}i"
+
+# Creating two complex number objects
+c1 = ComplexNumber(3, 2)
+c2 = ComplexNumber(1, 7)
+
+# Adding two complex numbers using the overloaded + operator
+c3 = c1 + c2
+
+print(c3)  # Output: 4 + 9i
+
+Output:
+4 + 9i
+==============================================================================================================================================================
+Example- Multiplying an Object with a Scalar
+class Vector:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __mul__(self, scalar):
+        return Vector(self.x * scalar, self.y * scalar)
+
+    def __rmul__(self, scalar):
+        return self.__mul__(scalar)
+
+    def __str__(self):
+        return f"Vector({self.x}, {self.y})"
+
+# Creating a Vector object
+v = Vector(2, 3)
+
+# Multiplying the vector by a scalar
+v2 = v * 4  # Using __mul__
+v3 = 3 * v  # Using __rmul__
+
+# Displaying the results
+print(v2)  # Output: Vector(8, 12)
+print(v3)  # Output: Vector(6, 9)
+
+Output:
+Vector(8, 12)
+Vector(6, 9)
+=================================================================================================================
+Example- String Representation
+class Book:
+    def __init__(self, title, author, price):
+        self.title = title
+        self.author = author
+        self.price = price
+
+    def __str__(self):
+        # Defines a readable string representation for the end-user
+        return f"'{self.title}' by {self.author}, priced at ₹{self.price}"
+
+    def __repr__(self):
+        # Defines a more detailed string representation for debugging
+        return f"Book(title='{self.title}', author='{self.author}', price={self.price})"
+
+# Creating an instance of the Book class
+book = Book("The Guide", "R.K. Narayan", 250)
+
+# Using the __str__ method
+print(str(book))  # Output: 'The Guide' by R.K. Narayan, priced at ₹250
+
+# Using the __repr__ method
+print(repr(book))  # Output: Book(title='The Guide', author='R.K. Narayan', price=250)
+
+Output:
+'The Guide' by R.K. Narayan, priced at ₹250
+Book(title='The Guide', author='R.K. Narayan', price=250)
+================================================================================================================================
+class Rectangle:
+    def __init__(self, length, width):
+        self.length = length
+        self.width = width
+        self.area = length * width
+
+    def __lt__(self, other):
+        return self.area < other.area
+
+    def __le__(self, other):
+        return self.area <= other.area
+
+    def __gt__(self, other):
+        return self.area > other.area
+
+    def __ge__(self, other):
+        return self.area >= other.area
+
+    def __eq__(self, other):
+        return self.area == other.area
+
+    def __ne__(self, other):
+        return self.area != other.area
+
+    def __str__(self):
+        return f"Rectangle({self.length} x {self.width})"
+
+# Creating two rectangle objects
+rect1 = Rectangle(4, 5)
+rect2 = Rectangle(3, 7)
+
+# Comparing the rectangles using overloaded comparison operators
+print(rect1 > rect2)   # Output: False
+print(rect1 < rect2)   # Output: True
+print(rect1 >= rect2)  # Output: False
+print(rect1 <= rect2)  # Output: True
+print(rect1 == rect2)  # Output: False
+print(rect1 != rect2)  # Output: True
+
+Output:
+False
+True
+False
+True
+False
+True
+=============================================================================================================================
+class Student:
+    def __init__(self, name, grade):
+        self.name = name
+        self.grade = grade
+
+    def __eq__(self, other):
+        """Override the equality operator (==)"""
+        if isinstance(other, Student):
+            return self.grade == other.grade
+        return False
+
+    def __lt__(self, other):
+        """Override the less-than operator (<)"""
+        if isinstance(other, Student):
+            return self.grade < other.grade
+        return False
+
+    def __repr__(self):
+        return f'Student(name={self.name}, grade={self.grade})'
+
+# Create Student objects
+student1 = Student("Alice", 90)
+student2 = Student("Bob", 85)
+student3 = Student("Charlie", 90)
+
+# Compare students
+print(student1 == student2)  # Output: False
+print(student1 == student3)  # Output: True
+print(student2 < student1)   # Output: True
+print(student1 < student3)   # Output: False
+
+Output:
+False
+True
+True
+False
