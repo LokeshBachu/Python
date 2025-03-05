@@ -1,0 +1,77 @@
+try:
+    # Code that may raise an exception
+    result = 10 / 0
+except ZeroDivisionError:
+    # Code to handle the exception
+    print("You can't divide by zero!")
+
+print("Program continues to run smoothly.")
+=============================================================================
+try:
+    # Code that may raise multiple types of exceptions
+    value = int(input("Enter a number: "))
+    result = 10 / value
+except ValueError:
+    # Handle the case where the input is not an integer
+    print("That's not a valid number. Please enter an integer.")
+except ZeroDivisionError:
+    # Handle the case where the input is zero
+    print("You can't divide by zero!")
+except Exception as e:
+    # Handle any other exceptions
+    print(f"An unexpected error occurred: {e}")
+
+print("Program continues to run smoothly.")
+=============================================================================
+try:
+    # Code that may raise an exception
+    number = int(input("Enter a positive integer: "))
+    if number < 0:
+        raise ValueError("This is not a positive integer.")
+except ValueError as ve:
+    # Handle the exception
+    print(f"Error: {ve}")
+else:
+    # Code that runs if no exceptions are raised
+    print(f"You entered {number}, which is a valid positive integer.")
+============================================================================================
+try:
+    # Code that may raise an exception
+    file = open("example.txt", "r")
+    content = file.read()
+    print(content)
+except FileNotFoundError:
+    # Handle the exception if the file is not found
+    print("Error: The file does not exist.")
+finally:
+    # This block will always execute
+    print("Closing the file (if it was opened).")
+    try:
+        file.close()
+    except NameError:
+        print("File was never opened, nothing to close.")
+==============================================================================================
+def check_age(age):
+    if age < 18:
+        raise ValueError("Age must be 18 or above.")
+    else:
+        print("You are allowed to proceed.")
+
+try:
+    user_age = int(input("Enter your age: "))
+    check_age(user_age)
+except ValueError as e:
+    print(f"Error: {e}")
+=============================================================================================================
+def calculate_average(marks):
+assert len(marks) != 0, "The list of marks cannot be empty"
+return sum(marks) / len(marks)
+
+marks = [85, 90, 78, 92, 88]
+average = calculate_average(marks)
+print(f"The average is: {average}")
+
+marks = []
+average = calculate_average(marks)
+print(f"The average is: {average}")
+======================================================================================================================
