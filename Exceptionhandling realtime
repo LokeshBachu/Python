@@ -1,1 +1,167 @@
+try:
+    num = int(input("Enter a number: "))
+    result = 100 / num
+    print("Result:", result)
+except ZeroDivisionError:
+    print("Error: Cannot divide by zero!")
+except ValueError:
+    print("Error: Invalid input! Please enter a number.")
+finally:
+    print("Execution completed.")
+=============================================================================
+try:
+    with open("data.txt", "r") as file:
+        content = file.read()
+        print(content)
+except FileNotFoundError:
+    print("Error: The file was not found!")
+============================================================================
+import requests
+
+try:
+    response = requests.get("https://jsonplaceholder.typicode.com/posts/1")
+    response.raise_for_status()  # Raises an exception for HTTP errors
+    data = response.json()
+    print(data)
+except requests.exceptions.RequestException as e:
+    print("Error: Unable to fetch data from API.", e)
+=======================================================================
+try:
+    user = {"name": "Alice", "age": 25}
+    print(user["email"])  # Key doesn't exist
+except KeyError:
+    print("Error: Key not found in dictionary!")
+====================================================================
+class InvalidAgeError(Exception):
+    pass
+
+try:
+    age = int(input("Enter your age: "))
+    if age < 0:
+        raise InvalidAgeError("Age cannot be negative!")
+    print("Your age is:", age)
+except InvalidAgeError as e:
+    print("Error:", e)
+except ValueError:
+    print("Error: Please enter a valid number.")
+=========================================================================
+import sqlite3
+
+try:
+    conn = sqlite3.connect("example.db")  # Connect to database
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM users")  # Querying a table
+    print(cursor.fetchall())
+except sqlite3.DatabaseError as e:
+    print("Database Error:", e)
+finally:
+    if conn:
+        conn.close()  # Ensure the connection is closed
+==========================================================================
+try:
+    age = int(input("Enter your age: "))
+    if age < 0:
+        raise ValueError("Age cannot be negative!")
+    print("Your age is:", age)
+except ValueError as e:
+    print("Invalid input:", e)
+===========================================================================
+import requests
+
+try:
+    response = requests.get("https://example.com", timeout=3)
+    print(response.text)
+except requests.exceptions.Timeout:
+    print("Error: The request timed out!")
+except requests.exceptions.RequestException as e:
+    print("Error:", e)
+=============================================================================
+import os
+
+try:
+    secret_key = os.environ["SECRET_KEY"]  # Fetch secret key
+    print("Secret key found!")
+except KeyError:
+    print("Error: SECRET_KEY is not set in environment variables.")
+==============================================================================
+import threading
+import time
+
+def faulty_thread():
+    try:
+        time.sleep(2)
+        raise ValueError("Something went wrong in the thread!")
+    except Exception as e:
+        print("Thread Error:", e)
+
+t = threading.Thread(target=faulty_thread)
+t.start()
+t.join()  # Ensure the thread completes
+==========================================================================
+import json
+
+try:
+    data = '{"name": "Alice", age: 25}'  # Invalid JSON (missing quotes)
+    parsed_data = json.loads(data)
+    print(parsed_data)
+except json.JSONDecodeError as e:
+    print("Error: Invalid JSON format!", e)
+=============================================================================
+try:
+    balance = 5000
+    withdraw_amount = int(input("Enter withdrawal amount: "))
+    
+    if withdraw_amount > balance:
+        raise ValueError("Insufficient funds!")
+    
+    balance -= withdraw_amount
+    print(f"Transaction successful! Remaining balance: {balance}")
+
+except ValueError as e:
+    print("Transaction Failed:", e)
+except Exception as e:
+    print("An unexpected error occurred:", e)
+=============================================================================
+import socket
+
+def check_internet():
+    try:
+        socket.create_connection(("8.8.8.8", 53), timeout=2)
+        print("Internet connection is available.")
+    except OSError:
+        print("Error: No internet connection!")
+
+check_internet()
+==============================================================================
+import torch
+
+try:
+    if not torch.cuda.is_available():
+        raise RuntimeError("CUDA GPU is not available!")
+    
+    print("Using GPU:", torch.cuda.get_device_name(0))
+except RuntimeError as e:
+    print("Error:", e)
+==========================================================================
+import threading
+
+lock = threading.Lock()
+
+def task():
+    try:
+        lock.acquire()
+        print("Task running...")
+        # Simulating work
+    finally:
+        lock.release()
+
+t1 = threading.Thread(target=task)
+t2 = threading.Thread(target=task)
+
+t1.start()
+t2.start()
+
+t1.join()
+t2.join()
+=========================================================================
 
