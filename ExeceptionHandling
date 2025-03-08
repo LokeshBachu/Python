@@ -75,3 +75,185 @@ marks = []
 average = calculate_average(marks)
 print(f"The average is: {average}")
 ======================================================================================================================
+def read_number_from_file(filename):
+    try:
+        with open(filename, 'r') as file:
+            number = int(file.read())
+            print(f"Number read from file: {number}")
+    except FileNotFoundError:
+        print("Error: The file was not found.")
+    except ValueError:
+        print("Error: The file does not contain a valid integer.")
+
+# Example usage:
+read_number_from_file('number.txt')  # Replace 'number.txt' with the path to your file
+
+Example Outputs Based on Various Cases:
+1. Valid Integer:
+# Content of number.txt: 123
+read_number_from_file('number.txt')
+# Output: Number read from file: 123
+
+2. Non-integer Content:
+# Content of number.txt: abc
+read_number_from_file('number.txt')
+# Output: Error: The file does not contain a valid integer.
+
+3. File Not Found:
+# File number.txt is missing
+read_number_from_file('number.txt')
+# Output: Error: The file was not found.
+==============================================================================================================================
+def get_integer_from_user():
+    try:
+        # Prompting user for input
+        user_input = input("Please enter an integer: ")
+        # Attempting to convert the input to an integer
+        number = int(user_input)
+        print(f"You entered the integer: {number}")
+    except ValueError:
+        # Handling the case where conversion to integer fails
+        print("Error: The input was not a valid integer.")
+    except Exception as e:
+        # Handling any other unexpected errors
+        print(f"An unexpected error occurred: {e}")
+
+# Example usage
+get_integer_from_user()
+===========================================================================================================================================
+def divide_numbers(num1, num2):
+    try:
+        result = num1 / num2
+    except ZeroDivisionError:
+        print("Error: Cannot divide by zero.")
+        return None
+    except TypeError:
+        print("Error: Both inputs must be numbers.")
+        return None
+    else:
+        return result
+
+# Example usage:
+print(divide_numbers(10, 2))  # Should print 5.0
+print(divide_numbers(10, 0))  # Should print "Error: Cannot divide by zero."
+print(divide_numbers(10, 'a'))  # Should print "Error: Both inputs must be numbers."
+=========================================================================================================================================
+def access_list_element(my_list, index):
+    try:
+        # Attempt to access an element in the list
+        element = my_list[index]
+        print(f"Element at index {index}: {element}")
+    except IndexError:
+        # Handle the case where the index is out of range
+        print("Error: Index out of range.")
+    finally:
+        # This block is executed no matter what
+        print("Finished attempting to access the list element.")
+
+# Example usage
+access_list_element([1, 2, 3], 1)  # Valid index
+access_list_element([1, 2, 3], 5)  # Invalid index
+========================================================================================================================================
+class InvalidAgeError(Exception):
+    def __init__(self, message="Age must be a positive integer."):
+        self.message = message
+        super().__init__(self.message)
+
+def set_age(age):
+    if age < 0:
+        # Raise the custom exception with a message
+        raise InvalidAgeError("Negative age is not allowed.")
+    elif age > 150:
+        # Raise the custom exception with a different message
+        raise InvalidAgeError("Age is too high. Please enter a realistic age.")
+    else:
+        print(f"Age set to {age}.")
+
+# Example usage
+try:
+    set_age(25)     # Valid age
+    set_age(-5)     # Invalid age: too low
+    set_age(200)    # Invalid age: too high
+except InvalidAgeError as e:
+    print(f"Error: {e}")
+==========================
+OutPut:
+Age set to 25.
+Error: Negative age is not allowed.
+======================================================================================================================================
+class CustomError(Exception):
+    """Custom exception class for specific error scenarios."""
+    def __init__(self, message):
+        super().__init__(message)
+
+
+def divide_numbers(x, y):
+    if y == 0:
+        raise CustomError("Cannot divide by zero!")
+    return x / y
+
+try:
+    result = divide_numbers(10, 0)
+except CustomError as e:
+    print(f"An error occurred: {e}")
+else:
+    print(f"The result is: {result}")
+=============================================================================================================================
+Example 1: User-Defined class with Multiple Inheritance
+class FileError(OSError, ValueError):
+    """Custom exception that inherits from OSError and ValueError."""
+    def __init__(self, message):
+        super().__init__(message)
+        self.message = message
+
+try:
+    raise FileError("This is a custom file error.")
+except FileError as e:
+    print(f"FileError caught: {e.message}")
+
+Output:
+FileError caught: This is a custom file error.
+
+Example 2: Deriving Error from Super Class Exception
+class InvalidInputError(ValueError):
+    """Custom exception for invalid input."""
+    def __init__(self, message):
+        super().__init__(message)
+        self.message = message
+
+def process_data(data):
+    if not isinstance(data, int):
+        raise InvalidInputError("Data must be an integer.")
+    return data * 2
+
+try:
+    result = process_data("string")
+except InvalidInputError as e:
+    print(f"InvalidInputError caught: {e.message}")
+
+Output:
+InvalidInputError caught: Data must be an integer.
+
+Example 3: Customizing Exception Classes
+class DatabaseConnectionError(Exception):
+    """Custom exception for database connection errors."""
+    def __init__(self, message, db_name):
+        super().__init__(message)
+        self.message = message
+        self.db_name = db_name
+
+    def __str__(self):
+        return f"{self.message} (Database: {self.db_name})"
+
+def connect_to_database(db_name):
+    if db_name != "expected_db":
+        raise DatabaseConnectionError("Failed to connect to the database.", db_name)
+
+try:
+    connect_to_database("unexpected_db")
+except DatabaseConnectionError as e:
+    print(e)  # Calls __str__ method to print the custom message
+
+Output:
+Failed to connect to the database. (Database: unexpected_db)
+===============================================================================================
