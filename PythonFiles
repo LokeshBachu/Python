@@ -289,3 +289,103 @@ df.to_csv('products.csv', index=False)
 
 
 print("Data written to products.csv successfully.")
+==============================================================================================================
+import csv
+
+# Opening the CSV file in read mode
+with open('employees.csv', 'r') as csvFile:
+    reader = csv.reader(csvFile)
+    
+    # Iterating over each row in the CSV file
+    for row in reader:
+        print(row)
+===========================================================================================
+import csv
+
+# Opening the CSV file in read mode
+with open('employees.csv', 'r') as csvFile:
+    reader = csv.DictReader(csvFile)
+    
+    # Iterating over each row in the CSV file
+    for row in reader:
+        print(dict(row))
+
+================================================================================================
+import csv
+
+# Opening the CSV file with a custom delimiter (e.g., pipe '|')
+with open('custom_delimited.csv', 'r') as csvFile:
+    reader = csv.reader(csvFile, delimiter='|')
+    
+    # Iterating over each row in the CSV file
+    for row in reader:
+        print(row)
+=================================================================================================
+import pandas as pd
+
+# Reading the CSV file into a DataFrame
+df = pd.read_csv('employees.csv')
+
+# Displaying the DataFrame
+print(df)
+=================================================================================================
+import csv
+
+# Opening the CSV file with initial spaces in fields
+with open('initial_spaces.csv', 'r') as csvFile:
+    reader = csv.reader(csvFile, skipinitialspace=True)
+    
+    # Iterating over each row in the CSV file
+    for row in reader:
+        print(row)
+=================================================================================================
+import csv
+
+# Opening the CSV file with quoted fields
+with open('quoted_fields.csv', 'r') as csvFile:
+    reader = csv.reader(csvFile)
+    
+    # Iterating over each row in the CSV file
+    for row in reader:
+        print(row)
+===================================================================================================
+import csv
+# Define a custom dialect
+csv.register_dialect('customDialect',
+                     delimiter=';',
+                     quotechar='"',
+                     quoting=csv.QUOTE_MINIMAL,
+                     escapechar='\\',
+                     skipinitialspace=True)
+
+# Sample data
+data = [
+    ['ID', 'Name', 'Department', 'Salary'],
+    [1, 'Rajesh', 'IT', 70000],
+    [2, 'Sneha', 'HR', 60000],
+    [3, 'Vikram', 'Finance', 80000],
+    [4, 'Anjali', 'Marketing', 75000]
+]
+
+# Writing to a CSV file using the custom dialect
+with open('custom_dialect.csv', 'w', newline='') as file:
+    writer = csv.writer(file, dialect='customDialect')
+    writer.writerows(data)
+
+print("CSV file 'custom_dialect.csv' created with custom dialect.")
+=========================================================================================================
+import csv
+# Sample data from a CSV file
+sample = '''"ID","Name","Department","Salary"
+"1","Rajesh","IT","70000"
+"2","Sneha","HR","60000"'''
+
+# Sniffing the dialect
+dialect = csv.Sniffer().sniff(sample)
+
+# Checking if the first row has headers
+has_header = csv.Sniffer().has_header(sample)
+
+print("Dialect:", dialect.delimiter)
+print("Has Header:", has_header)
+=============================================================================================================
