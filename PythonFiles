@@ -1,0 +1,170 @@
+import os
+import datetime
+
+
+# Define the path to the file or directory
+path = 'example_file.txt'
+
+
+# Create a file to test with
+with open(path, 'w') as file:
+    file.write('This is an example file.')
+
+
+# Get the last accessed time
+atime = os.path.getatime(path)
+# Get the last modified time
+mtime = os.path.getmtime(path)
+
+
+# Convert the timestamps to datetime objects
+atime_dt = datetime.datetime.fromtimestamp(atime)
+mtime_dt = datetime.datetime.fromtimestamp(mtime)
+
+
+# Format the datetime objects
+atime_str = atime_dt.strftime('%Y-%m-%d %H:%M:%S')
+mtime_str = mtime_dt.strftime('%Y-%m-%d %H:%M:%S')
+
+
+print(f'Last Accessed Time: {atime_str}')
+print(f'Last Modified Time: {mtime_str}')
+
+
+# Clean up by removing the file
+os.remove(path)
+======================================================================================================
+import shutil
+import os
+# Create a source directory with a file
+os.makedirs('source_dir', exist_ok=True)
+with open('source_dir/file.txt', 'w') as f:
+    f.write('Hello, world!')
+
+
+# Copy the source directory to the destination
+shutil.copytree('source_dir', 'destination_dir')
+print('Directory copied successfully.')
+======================================================================================================
+import shutil
+shutil.rmtree('source_dir')
+shutil.rmtree('destination_dir')
+
+===========================================================================================================
+import shutil
+import os
+# Create a source file
+source_file = 'source_file.txt'
+with open(source_file, 'w') as f:
+    f.write('This file will be moved.')
+
+# Define the destination path
+destination_file = 'destination_file.txt'
+
+# Move the file
+shutil.move(source_file, destination_file)
+
+print('File moved successfully.')
+
+# Verify the move
+if os.path.exists(destination_file):
+    print(f'File found at: {destination_file}')
+
+# Clean up
+os.remove(destination_file)
+=========================================================================================================
+import tempfile
+import os
+# Create a temporary directory
+temp_dir = tempfile.mkdtemp(prefix='temp_', suffix='_dir')
+print(f'Temporary directory created at: {temp_dir}')
+# Clean up by removing the temporary directory
+os.rmdir(temp_dir)
+=============================================================================================================
+import tempfile
+import os
+
+
+# Create a temporary directory
+temp_dir = tempfile.TemporaryDirectory(prefix='temp_', suffix='_dir')
+
+
+try:
+    print(f'Temporary directory created at: {temp_dir.name}')
+   
+    # Create a file in the temporary directory
+    with open(os.path.join(temp_dir.name, 'temp_file.txt'), 'w') as f:
+        f.write('This is a temporary file.')
+
+
+    # Verify the file creation
+    print(f'File created in temp directory: {os.path.join(temp_dir.name, "temp_file.txt")}')
+finally:
+    # Explicitly clean up the temporary directory
+    temp_dir.cleanup()
+    print('Temporary directory cleaned up.')
+================================================================================================================
+import filecmp
+# Create two directories with some files and subdirectories for comparison
+import os
+os.makedirs('dir1/subdir', exist_ok=True)
+with open('dir1/file1.txt', 'w') as f:
+    f.write('This is file1 in dir1')
+os.makedirs('dir2/subdir', exist_ok=True)
+with open('dir2/file1.txt', 'w') as f:
+    f.write('This is file1 in dir2')
+# Create dircmp object
+d = filecmp.dircmp('dir1', 'dir2')
+# Report the comparison
+print("Report:")
+d.report()
+# Clean up
+import shutil
+shutil.rmtree('dir1')
+shutil.rmtree('dir2')
+===================================================================================================================
+import filecmp
+# Create two directories with some files and subdirectories for comparison
+import os
+os.makedirs('dir1/subdir', exist_ok=True)
+with open('dir1/file1.txt', 'w') as f:
+    f.write('This is file1 in dir1')
+os.makedirs('dir2/subdir', exist_ok=True)
+with open('dir2/file1.txt', 'w') as f:
+    f.write('This is file1 in dir2')
+# Create dircmp object
+d = filecmp.dircmp('dir1', 'dir2')
+# Report the comparison
+print("Report:")
+d.report()
+# Clean up
+import shutil
+shutil.rmtree('dir1')
+shutil.rmtree('dir2')
+======================================================================================================================
+import filecmp
+import os
+import shutil
+# Recreate directories for demonstration
+os.makedirs('dir1/subdir', exist_ok=True)
+with open('dir1/subdir/file2.txt', 'w') as f:
+    f.write('This is file2 in dir1')
+
+
+os.makedirs('dir2/subdir', exist_ok=True)
+with open('dir2/subdir/file2.txt', 'w') as f:
+    f.write('This is file2 in dir2')
+
+
+# Create dircmp object
+d = filecmp.dircmp('dir1', 'dir2')
+
+
+# Report partial closure
+print("Partial Closure Report:")
+d.report_partial_closure()
+
+
+# Clean up
+shutil.rmtree('dir1')
+shutil.rmtree('dir2')
