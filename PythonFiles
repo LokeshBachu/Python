@@ -385,7 +385,178 @@ dialect = csv.Sniffer().sniff(sample)
 
 # Checking if the first row has headers
 has_header = csv.Sniffer().has_header(sample)
+==========================================================================================================
+import csv
+
+# Data to be written
+data = ['ID', 'Name', 'Department', 'Salary']
+
+# Writing data to a CSV file
+with open('single_row.csv', 'w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow(data)
+
+print("CSV file 'single_row.csv' created with a single row.")
+==============================================================================================================
+import csv
+
+# Data to be written
+data = [
+    ['ID', 'Name', 'Department', 'Salary'],
+    [1, 'Rajesh', 'IT', 70000],
+    [2, 'Sneha', 'HR', 60000],
+    [3, 'Vikram', 'Finance', 80000]
+]
+
+# Writing multiple rows to a CSV file
+with open('multiple_rows.csv', 'w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerows(data)
+
+print("CSV file 'multiple_rows.csv' created with multiple rows.")
+===============================================================================================================
+import csv
+
+# Data to be written
+data = [
+    {'ID': 1, 'Name': 'Rajesh', 'Department': 'IT', 'Salary': 70000},
+    {'ID': 2, 'Name': 'Sneha', 'Department': 'HR', 'Salary': 60000},
+    {'ID': 3, 'Name': 'Vikram', 'Department': 'Finance', 'Salary': 80000}
+]
+
+# Fieldnames (columns)
+fieldnames = ['ID', 'Name', 'Department', 'Salary']
+
+# Writing dictionary rows to a CSV file
+with open('dict_writer.csv', 'w', newline='') as file:
+    writer = csv.DictWriter(file, fieldnames=fieldnames)
+    writer.writeheader()
+    writer.writerows(data)
+
+print("CSV file 'dict_writer.csv' created with dictionary rows.")
+=========================================================================================================================
+import csv
+
+# Data to be written
+data = [
+    ['ID', 'Name', 'Department', 'Salary'],
+    [1, 'Rajesh', 'IT', 70000],
+    [2, 'Sneha', 'HR', 60000]
+]
+
+# Writing data to a CSV file with pipe delimiter
+with open('pipe_delimiter.csv', 'w', newline='') as file:
+    writer = csv.writer(file, delimiter='|')
+    writer.writerows(data)
+
+print("CSV file 'pipe_delimiter.csv' created with pipe delimiter.")
+===========================================================================================================================
+
 
 print("Dialect:", dialect.delimiter)
 print("Has Header:", has_header)
 =============================================================================================================
+import csv
+
+# Data to be written
+data = [
+    ['ID', 'Name', 'Department', 'Salary'],
+    [1, 'Rajesh', 'IT', 70000],
+    [2, 'Sneha', 'HR', 60000]
+]
+
+# Writing data to a CSV file with pipe delimiter
+with open('pipe_delimiter.csv', 'w', newline='') as file:
+    writer = csv.writer(file, delimiter='|')
+    writer.writerows(data)
+
+print("CSV file 'pipe_delimiter.csv' created with pipe delimiter.")
+===============================================================================================================================
+import csv
+
+# Data to be written
+data = [
+    ['ID', 'Name', 'Department', 'Salary'],
+    [1, 'Rajesh', 'IT', 70000],
+    [2, 'Sneha', 'HR', 60000]
+]
+
+# Writing data to a CSV file with custom quoting character
+with open('custom_quote.csv', 'w', newline='') as file:
+    writer = csv.writer(file, quotechar="'", quoting=csv.QUOTE_MINIMAL)
+    writer.writerows(data)
+
+print("CSV file 'custom_quote.csv' created with single quote quoting character.")
+================================================================================================================
+import csv
+
+# Data to be written
+data = [
+    ['ID', 'Name', 'Department', 'Salary'],
+    [1, 'Rajesh', 'IT', 70000],
+    [2, 'Sneha', 'HR', 60000]
+]
+
+# Writing data to a CSV file with custom line terminator
+with open('lineterminator.csv', 'w', newline='') as file:
+    writer = csv.writer(file, lineterminator='\n---\n')
+    writer.writerows(data)
+
+print("CSV file 'lineterminator.csv' created with custom line terminator.")
+===================================================================================================================
+import csv
+
+# Data to be written
+data = [
+    ['ID', 'Name', 'Department', 'Salary'],
+    [1, 'Rajesh', 'IT', '70,000'],
+    [2, 'Sneha', 'HR', '60,000']
+]
+
+# Writing data to a CSV file with escape character
+with open('escapechar.csv', 'w', newline='') as file:
+    writer = csv.writer(file, escapechar='\\', doublequote=False)
+    writer.writerows(data)
+
+print("CSV file 'escapechar.csv' created with escape character.")
+===============================================================================
+import csv
+
+# Data to be written
+data = [
+    ['ID', 'Name', 'Department', 'Salary'],
+    [1, 'Rajesh', 'IT', '70000'],
+    [2, 'Sneha', 'HR', '60000']
+]
+
+# Writing data to a CSV file with quotes
+with open('quotes.csv', 'w', newline='') as file:
+    writer = csv.writer(file, quotechar='"', quoting=csv.QUOTE_ALL)
+    writer.writerows(data)
+
+print("CSV file 'quotes.csv' created with quotes around all entries.")
+===================================================================================
+import csv
+
+# Define a custom dialect
+csv.register_dialect('custom_dialect',
+                     delimiter=';',
+                     quotechar="'",
+                     quoting=csv.QUOTE_MINIMAL,
+                     lineterminator='\n')
+
+# Data to be written
+data = [
+    ['Name', 'Age', 'Occupation'],
+    ['Alice', 30, 'Engineer'],
+    ['Bob', 25, 'Data Scientist'],
+    ['Charlie', 35, 'Teacher']
+]
+
+# Exporting data to a CSV file using the custom dialect
+with open('custom_dialect_file.csv', 'w', newline='') as file:
+    writer = csv.writer(file, dialect='custom_dialect')
+    writer.writerows(data)  # Write all rows of data
+
+print("CSV file 'custom_dialect_file.csv' has been created with custom dialect.")
+==============================================================================================
