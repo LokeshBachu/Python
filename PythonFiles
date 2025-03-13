@@ -188,3 +188,104 @@ with open('example.csv', mode='r') as file:
     for row in reader:
         print(row)
 ========================================================================================================================
+import csv
+with open('example.csv', mode='r') as csvfile:
+    reader = csv.reader(csvfile, dialect='excel')
+    for row in reader:
+        print(row)
+=====================================================================================================
+import csv
+
+
+# Data to be written
+header = ['Product', 'Price', 'Quantity']
+row = ['Laptop', 75000, 3]
+
+
+# Writing to a CSV file
+with open('products.csv', 'w', newline='') as file:
+    writer = csv.writer(file)
+   
+    # Writing the header
+    writer.writerow(header)
+   
+    # Writing a single row
+    writer.writerow(row)
+
+
+print("Data written to products.csv successfully.")
+=====================================================================================
+import csv
+
+
+# Data to be written
+header = ['Name', 'Age', 'City']
+row = {'Name': 'Amit', 'Age': 28, 'City': 'Mumbai'}
+
+
+# Writing to a CSV file
+with open('people.csv', 'w', newline='') as file:
+    writer = csv.DictWriter(file, fieldnames=header)
+    
+    # Writing the header
+    writer.writeheader()
+    
+    # Writing a single row
+    writer.writerow(row)
+
+
+print("Data written to people.csv successfully.")
+=================================================================================================
+import csv
+
+
+# Data to be written
+header = ['Product', 'Price', 'Quantity']
+rows = [
+    ['Laptop', 75000, 3],
+    ['Smartphone', 15000, 10],
+    ['Tablet', 20000, 5]
+]
+
+
+# Writing to a CSV file
+with open('inventory.csv', 'w', newline='') as file:
+    writer = csv.writer(file)
+    
+    # Writing the header
+    writer.writerow(header)
+    
+    # Writing multiple rows
+    writer.writerows(rows)
+
+
+print("Data written to inventory.csv successfully.")
+
+====================================================================================================
+import pandas as pd
+# Reading the CSV file
+df = pd.read_csv('inventory.csv')
+# Displaying the content
+print(df)
+
+=========================================================================================================
+import pandas as pd
+
+
+# Data to be written
+data = {
+    'Product': ['Laptop', 'Smartphone', 'Tablet'],
+    'Price': [75000, 15000, 20000],
+    'Quantity': [3, 10, 5]
+}
+
+
+# Creating a DataFrame
+df = pd.DataFrame(data)
+
+
+# Writing the DataFrame to a CSV file
+df.to_csv('products.csv', index=False)
+
+
+print("Data written to products.csv successfully.")
