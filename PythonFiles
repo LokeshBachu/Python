@@ -168,3 +168,23 @@ d.report_partial_closure()
 # Clean up
 shutil.rmtree('dir1')
 shutil.rmtree('dir2')
+==========================================================================================================================
+import csv
+# Data to be written to the CSV file
+data = [
+    ["Name", "Age", "City"],
+    ["A", 30, "New York"],
+    ["B", 25, "Los Angeles"],
+    ["C", 35, "Chicago"]
+]
+# Writing to a CSV file
+with open('example.csv', mode='w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerows(data)
+print("Data written to example.csv")
+# Reading from a CSV file
+with open('example.csv', mode='r') as file:
+    reader = csv.reader(file)
+    for row in reader:
+        print(row)
+========================================================================================================================
